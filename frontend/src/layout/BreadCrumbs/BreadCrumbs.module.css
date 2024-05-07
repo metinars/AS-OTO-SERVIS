@@ -1,0 +1,72 @@
+.breadcrumbs__section {
+    background-color: #EAEAEA;
+    height: 25vh;
+    display: flex;
+    /* Yatay hizalama için */
+    align-items: center;
+    /* Dikey hizalama için */
+}
+
+.breadcrumbs__section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Tam genişlik */
+    max-width: 1000px;
+    /* İstediğiniz bir maksimum genişlik değeri */
+    margin: auto;
+    /* Yatayda ortalamak için */
+}
+
+.breadcrumbs__title {
+    margin-bottom: 10px;
+    font-family: 'Barlow Condensed';
+    font-size: 57px;
+    font-weight: 500;
+}
+
+.breadcrumbs__home {
+    font-family: 'DM Sans Serif';
+    font-size: 22px;
+    font-weight: 300;
+    position: relative;
+    text-decoration: none;
+    color: black;
+}
+
+.breadcrumbs__home:hover {
+    position: relative;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+}
+
+.breadcrumbs__current {
+    font-family: 'DM Sans Serif';
+    font-size: 22px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #FE600A;
+}
+
+.breadcrumbs__delimiter::after {
+    content: "/";
+    margin: 0 5px;
+}
+
+.breadcrumbs__home::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+.breadcrumbs__home:hover::after {
+    width: 100%;
+    left: 0;
+}

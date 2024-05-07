@@ -1,0 +1,76 @@
+.contact__form {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 1rem;
+    margin-bottom: auto;
+}
+
+.contact__form .container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contact__form .form {
+    flex: 49%;
+    width: 100%;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.contact__form .google__maps {
+    flex: 49%;
+}
+
+.contact__form .form__title {
+    font-family: 'DM Sans';
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.google__maps {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contact__form .map__title {
+    font-family: 'DM Sans';
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.adress,
+.phone,
+.mail {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 25px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.markerIcon {
+    color: #FE600A;
+}
+
+.adress:hover,
+.phone:hover,
+.mail:hover {
+    color: #FE600A;
+}

@@ -1,0 +1,16 @@
+.button {
+    padding: 17px 50px;
+    background-color: #FE600E;
+    border-color: #FE600E;
+    color: #F4F4F4;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: 'DM Sans';
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #E05200;
+    color: #FFFFFF;
+}
