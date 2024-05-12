@@ -1,12 +1,11 @@
 .fuse__section {
     width: 100vw;
-    height: 100vh;
+    height: 80rem;
     background-color: #F4F4F4;
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
     position: relative;
-    /* Ana container'ı pozisyonlandırmak için */
 }
 
 .fuse__component {

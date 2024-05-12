@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import classes from './OurServices.module.css';
 import s1 from '../../assets/images/home/services/s1.png';
 import s2 from '../../assets/images/home/services/s2.png';
@@ -7,11 +9,39 @@ import s5 from '../../assets/images/home/services/s5.png';
 import s6 from '../../assets/images/home/services/s6.png';
 
 const OurServices = () => {
+  const container = {
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      translateY: 20,
+    },
+    visible: {
+      opacity: 1,
+      translateY: 0,
+    },
+  };
   return (
-    <div id="services" className={classes.services__section}>
+    <motion.div
+      id="services"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={classes.services__section}
+    >
       <div className={classes.section__title}>Hizmetlerimiz</div>
-      <div className={classes.container}>
-        <div className={classes.service__box}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={container}
+        className={classes.container}
+      >
+        <motion.div variants={item} className={classes.service__box}>
           <div className={classes.service__avatar}>
             <img src={s1} />
           </div>
@@ -20,8 +50,8 @@ const OurServices = () => {
             Tüm sigorta şirketleri kapsamında, aracınız bir kaza yaptığında
             takibini yapar ve hasar onarım işlemlerini hızlandırır.
           </div>
-        </div>
-        <div className={classes.service__box}>
+        </motion.div>
+        <motion.div variants={item} className={classes.service__box}>
           <div className={classes.service__avatar}>
             <img src={s2} />
           </div>
@@ -30,8 +60,8 @@ const OurServices = () => {
             Tüm kaporta hasarlarına profesyonel çözümler sunuyoruz. Aracınızda
             meydana gelen hasar onarımlarını yenisi gibi onarıyoruz
           </div>
-        </div>
-        <div className={classes.service__box}>
+        </motion.div>
+        <motion.div variants={item} className={classes.service__box}>
           <div className={classes.service__avatar}>
             <img src={s3} />
           </div>
@@ -40,8 +70,8 @@ const OurServices = () => {
             Çalışmış olduğumuz boya servisleriyle aracınızda meydana gelen boya
             hasarlarına profesyonel yöntemlerle çözümler sunuyoruz.
           </div>
-        </div>
-        <div className={classes.service__box}>
+        </motion.div>
+        <motion.div variants={item} className={classes.service__box}>
           <div className={classes.service__avatar}>
             <img src={s4} />
           </div>
@@ -52,8 +82,8 @@ const OurServices = () => {
             Aracınızdaki meydana gelen kapı kilidi ve cam kriko sorunlarını
             tespit ediyoruz. Bu sorunlara çözüm sunuyoruz.
           </div>
-        </div>
-        <div className={classes.service__box}>
+        </motion.div>
+        <motion.div variants={item} className={classes.service__box}>
           <div className={classes.service__avatar}>
             <img src={s5} />
           </div>
@@ -62,8 +92,8 @@ const OurServices = () => {
             Aracınızın tabanındaki hasar ve zamanın vermiş olduğu çürümeye
             çözümler sunuyoruz.
           </div>
-        </div>
-        <div className={classes.service__box}>
+        </motion.div>
+        <motion.div variants={item} className={classes.service__box}>
           <div className={classes.service__avatar}>
             <img src={s6} />
           </div>
@@ -74,9 +104,9 @@ const OurServices = () => {
             Aracınızın tampon ve tüm plastik aksamlarında meydana gelen hasar
             tespit edilir ve hasar tipi ölçüsüne göre çözüm sunuyoruz.
           </div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
