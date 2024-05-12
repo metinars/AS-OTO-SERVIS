@@ -25,7 +25,7 @@ const MainNavigation = () => {
         <div className={classes.elementor__container}>
           <div className={classes.header__logo}>
             <NavLink to={'/'}>
-              AS OTO <span>SERVİS</span>
+              AS OTO <span>KAPORTA</span>
             </NavLink>
           </div>
           {!isTabletOrMobile && (
