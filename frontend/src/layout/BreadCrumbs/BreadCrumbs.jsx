@@ -7,7 +7,7 @@ const BreadCrumbs = ({ home, current }) => {
     <div>
       <div className={classes.breadcrumbs__section}>
         <div className={classes.container}>
-          <div className={classes.breadcrumbs__title}>Hakkımızda</div>
+          <div className={classes.breadcrumbs__title}>{current}</div>
           <div className={classes.breadcrumbs__items}>
             <NavLink to={'/'} className={classes.breadcrumbs__home}>
               {home}
