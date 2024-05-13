@@ -12,7 +12,11 @@ const AboutUs = () => {
     window.location.href = `tel:${phoneNumber}`;
   };
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.section
+      id="hakkimizda"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <BreadCrumbs home={'Ana Sayfa'} current={'Hakkımızda'} />
       <div className={classes.aboutus__section}>
         <div className={classes.aboutus__title}>
@@ -45,7 +49,7 @@ const AboutUs = () => {
           Hemen Ara
         </button>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 

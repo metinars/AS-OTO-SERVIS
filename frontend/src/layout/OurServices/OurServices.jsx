@@ -41,9 +41,13 @@ const OurServices = () => {
         variants={container}
         className={classes.container}
       >
-        <motion.div variants={item} className={classes.service__box}>
+        <motion.div
+          variants={item}
+          whileHover={{ scale: 1.05, translateY: -10 }}
+          className={classes.service__box}
+        >
           <div className={classes.service__avatar}>
-            <img src={s1} />
+            <img src={s1} alt="Sigorta Hasar Onarım" />
           </div>
           <div className={classes.service__title}>Sigorta Hasar Onarımı</div>
           <div className={classes.service__content}>
@@ -51,9 +55,13 @@ const OurServices = () => {
             takibini yapar ve hasar onarım işlemlerini hızlandırır.
           </div>
         </motion.div>
-        <motion.div variants={item} className={classes.service__box}>
+        <motion.div
+          variants={item}
+          whileHover={{ scale: 1.05, translateY: -10 }}
+          className={classes.service__box}
+        >
           <div className={classes.service__avatar}>
-            <img src={s2} />
+            <img src={s2} alt="Oto Kaporta" />
           </div>
           <div className={classes.service__title}>Oto Kaporta</div>
           <div className={classes.service__content}>
@@ -61,9 +69,13 @@ const OurServices = () => {
             meydana gelen hasar onarımlarını yenisi gibi onarıyoruz
           </div>
         </motion.div>
-        <motion.div variants={item} className={classes.service__box}>
+        <motion.div
+          variants={item}
+          whileHover={{ scale: 1.05, translateY: -10 }}
+          className={classes.service__box}
+        >
           <div className={classes.service__avatar}>
-            <img src={s3} />
+            <img src={s3} alt="Oto Boya" />
           </div>
           <div className={classes.service__title}>Oto Boya</div>
           <div className={classes.service__content}>
@@ -71,9 +83,13 @@ const OurServices = () => {
             hasarlarına profesyonel yöntemlerle çözümler sunuyoruz.
           </div>
         </motion.div>
-        <motion.div variants={item} className={classes.service__box}>
+        <motion.div
+          variants={item}
+          whileHover={{ scale: 1.05, translateY: -10 }}
+          className={classes.service__box}
+        >
           <div className={classes.service__avatar}>
-            <img src={s4} />
+            <img src={s4} alt="Kapı Kilidi Ve Kapı Camı Sistemleri " />
           </div>
           <div className={classes.service__title}>
             Kapı Kilidi ve Kapı Camı Sistemleri
@@ -83,9 +99,13 @@ const OurServices = () => {
             tespit ediyoruz. Bu sorunlara çözüm sunuyoruz.
           </div>
         </motion.div>
-        <motion.div variants={item} className={classes.service__box}>
+        <motion.div
+          variants={item}
+          whileHover={{ scale: 1.05, translateY: -10 }}
+          className={classes.service__box}
+        >
           <div className={classes.service__avatar}>
-            <img src={s5} />
+            <img src={s5} alt="Araç Taban Onarımı" />
           </div>
           <div className={classes.service__title}>Araç Taban Onarımı</div>
           <div className={classes.service__content}>
@@ -93,9 +113,13 @@ const OurServices = () => {
             çözümler sunuyoruz.
           </div>
         </motion.div>
-        <motion.div variants={item} className={classes.service__box}>
+        <motion.div
+          variants={item}
+          whileHover={{ scale: 1.05, translateY: -10 }}
+          className={classes.service__box}
+        >
           <div className={classes.service__avatar}>
-            <img src={s6} />
+            <img src={s6} alt="Tampon ve Plastik Onarımı" />
           </div>
           <div className={classes.service__title}>
             Tampon ve Plastik Onarımı

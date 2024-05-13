@@ -59,6 +59,7 @@ const WrapSlider = () => {
         <motion.img
           key={page}
           src={images[imageIndex]}
+          alt="As Oto Kaporta"
           custom={direction}
           variants={variants}
           initial="enter"

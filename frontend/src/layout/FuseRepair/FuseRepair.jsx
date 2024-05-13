@@ -16,10 +16,10 @@ const FuseRepair = () => {
       <div className={classes.fuse__component}>
         <div className={classes.fuse__image__component}>
           <div className={classes.first__image}>
-            <img src={repair1} alt="Repair 1" />
+            <img src={repair1} alt="Sigorta Hasar Onarımı" />
           </div>
           <div className={classes.second__image}>
-            <img src={repair2} alt="Repair 2" />
+            <img src={repair2} alt="Sigorta Hasar Onarımı" />
           </div>
         </div>
         <div className={classes.fuse__content__component}>
