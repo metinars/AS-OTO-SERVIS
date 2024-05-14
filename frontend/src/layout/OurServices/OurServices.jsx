@@ -29,7 +29,6 @@ const OurServices = () => {
   };
   return (
     <motion.div
-      id="services"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={classes.services__section}

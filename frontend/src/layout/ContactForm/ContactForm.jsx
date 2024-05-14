@@ -48,7 +48,7 @@ const ContactForm = () => {
             <span className={classes.markerIcon}>
               <IoMail />
             </span>
-            <span>asotoservis0@gmail.com</span>
+            <span>asotoservis40@gmail.com</span>
           </div>
           {/* <div className={classes.form}>
             <Input

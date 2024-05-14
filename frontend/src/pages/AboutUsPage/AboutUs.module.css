@@ -8,6 +8,12 @@
     padding: 5rem;
 }
 
+@media (max-width: 767px) {
+    .aboutus__section {
+        padding: 2rem;
+    }
+}
+
 .aboutus__button {
     padding: 17px 50px;
     background-color: #FE600E;
