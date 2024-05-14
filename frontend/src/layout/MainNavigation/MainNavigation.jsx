@@ -91,7 +91,7 @@ const MainNavigation = () => {
               className={classes.burger}
             >
               {!isBurgerButton ? (
-                <GiHamburgerMenu />
+                <GiHamburgerMenu style={{ color: 'black' }} />
               ) : (
                 <IoCloseSharp style={{ color: 'white' }} />
               )}
