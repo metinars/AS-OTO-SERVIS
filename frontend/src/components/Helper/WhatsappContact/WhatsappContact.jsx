@@ -9,7 +9,7 @@ const WhatsappContact = () => {
     <div className="whatsapp__contact">
       <FloatingWhatsApp
         className="floating-whatsapp-button"
-        phoneNumber="+905427442628" // Required
+        phoneNumber="+905389118309" // Required
         accountName="As Oto Kaporta" // Optional
         avatar="/images/avatar.webp" // Optional
         initialMessageByServer="Merhaba! size nasıl yardımcı olabilirim?" // Optional
