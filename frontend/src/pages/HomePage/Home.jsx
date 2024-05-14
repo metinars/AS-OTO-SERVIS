@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -21,6 +21,10 @@ const LazyLoadComponent = ({ children }) => {
 };
 
 const Home = () => {
+  useEffect(() => {
+    document.title =
+      'Profesyonel Kaporta Tamiri ve Onarımı | As Oto Kaporta | Kırşehir';
+  }, []);
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <LazyLoadComponent>

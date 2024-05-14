@@ -6,6 +6,9 @@ import aboutusImage from '../../assets/images/hasarli-araba.jpg';
 import classes from './AboutUs.module.css';
 
 const AboutUs = () => {
+  useEffect(() => {
+    document.title = 'Hakkımızda | AS Oto Kaporta';
+  }, []);
   const phoneNumber = '(542) 744 26 28';
 
   const handleCallClick = () => {
