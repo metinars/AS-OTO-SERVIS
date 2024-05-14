@@ -8,6 +8,7 @@ import classes from './AboutUs.module.css';
 const AboutUs = () => {
   useEffect(() => {
     document.title = 'Hakkımızda | AS Oto Kaporta';
+    window.scrollTo(0, 0);
   }, []);
   const phoneNumber = '(542) 744 26 28';
 

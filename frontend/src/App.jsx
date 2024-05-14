@@ -28,26 +28,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [showScroll, setShowScroll] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('scroll', checkScrollTop);
-    return () => {
-      window.removeEventListener('scroll', checkScrollTop);
-    };
-  }, []);
-
-  const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
-      setShowScroll(true);
-    } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false);
-    }
-  };
-
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
   return (
     <>
       <RouterProvider router={router} />

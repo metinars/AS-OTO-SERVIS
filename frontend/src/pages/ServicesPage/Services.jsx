@@ -8,6 +8,7 @@ const Services = () => {
   useEffect(() => {
     document.title =
       'Otomobil Sigorta Hasar Onarımı ve Kaporta Hizmetleri | AS Oto Kaporta';
+    window.scrollTo(0, 0);
   }, []);
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

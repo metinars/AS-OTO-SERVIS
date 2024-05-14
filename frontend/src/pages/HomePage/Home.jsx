@@ -24,6 +24,7 @@ const Home = () => {
   useEffect(() => {
     document.title =
       'Profesyonel Kaporta Tamiri ve Onarımı | As Oto Kaporta | Kırşehir';
+    window.scrollTo(0, 0);
   }, []);
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>

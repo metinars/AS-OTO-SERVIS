@@ -7,6 +7,7 @@ import ContactForm from '../../layout/ContactForm';
 const Contact = () => {
   useEffect(() => {
     document.title = 'İletişim | AS Oto Kaporta';
+    window.scrollTo(0, 0);
   }, []);
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
