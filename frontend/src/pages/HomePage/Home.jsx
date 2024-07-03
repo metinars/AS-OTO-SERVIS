@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// Bileşenlerin importları
 import ContactForm from '../../layout/ContactForm';
 import FuseRepair from '../../layout/FuseRepair';
 import OurServices from '../../layout/OurServices';
@@ -12,7 +11,6 @@ const LazyLoadComponent = ({ children }) => {
   const { ref, inView } = useInView();
   const [loaded, setLoaded] = useState(false);
 
-  // Sadece bir kez yüklemeyi sağlamak için durumu kontrol edelim
   if (inView && !loaded) {
     setLoaded(true);
   }

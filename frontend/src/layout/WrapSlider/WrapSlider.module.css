@@ -82,7 +82,7 @@
     transform: scale(-1);
 }
 
-img {
+.slider__container img {
     position: absolute;
     max-width: 100vw;
     min-height: 759px;
@@ -90,7 +90,7 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-    img {
+    .slider__container img {
         position: absolute;
         max-width: 100vw;
         min-height: 510px;
@@ -116,6 +116,7 @@ img {
     transform: translate(-50%, -50%);
     opacity: 0;
     animation: slide-in 2s forwards;
+    padding-top: 4rem;
 }
 
 .slider__content .sub__title {
@@ -125,6 +126,7 @@ img {
     transform: translate(-50%, -50%);
     opacity: 0;
     animation: slide-in 1s forwards;
+    padding-top: 4rem;
 }
 
 .slider__content .scroll__down {

@@ -24,15 +24,7 @@ const AboutUs = () => {
       <BreadCrumbs home={'Ana Sayfa'} current={'Hakkımızda'} />
       <div className={classes.aboutus__section}>
         <div className={classes.aboutus__title}>
-          <h1
-            style={{
-              color: '#FE600A',
-              fontFamily: 'Barlow Condensed',
-              fontSize: '57px',
-            }}
-          >
-            AS OTO KAPORTA
-          </h1>
+          <h1 className={classes.aboutus__title}>AS OTO KAPORTA</h1>
         </div>
         <div className={classes.content}>
           <p style={{ fontFamily: 'DM Sans', fontSize: '17px' }}>

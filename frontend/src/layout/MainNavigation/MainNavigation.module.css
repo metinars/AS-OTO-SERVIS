@@ -149,6 +149,13 @@
   place-items: center;
   width: 88px;
   height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger svg {
+  margin-bottom: 10px;
 }
 
 .background {

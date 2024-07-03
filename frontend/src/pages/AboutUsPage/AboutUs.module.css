@@ -8,6 +8,13 @@
     padding: 5rem;
 }
 
+.aboutus__title {
+    color: #FE600A;
+    font-family: 'Barlow Condensed';
+    font-size: 57px;
+    padding: 1.5rem 0rem;
+}
+
 @media (max-width: 767px) {
     .aboutus__section {
         padding: 2rem;
@@ -16,6 +23,7 @@
 
 .aboutus__button {
     padding: 17px 50px;
+    margin-top: 1rem;
     background-color: #FE600E;
     border-color: #FE600E;
     color: #F4F4F4;

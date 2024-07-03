@@ -11,7 +11,7 @@ const WhatsappContact = () => {
         className="floating-whatsapp-button"
         phoneNumber="+905389118309" // Required
         accountName="As Oto Kaporta" // Optional
-        avatar="/images/avatar.webp" // Optional
+        avatar="https://www.asotokaporta.com/favicon.png" // Optional
         initialMessageByServer="Merhaba! size nasıl yardımcı olabilirim?" // Optional
         statusMessage="Çevrimiçi" // Optional
         placeholder="Buraya yaz.." // Optional

@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './BreadCrumbs.module.css';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-const BreadCrumbs = ({ home, current }) => {
+const BreadCrumbs = ({ home, current, secondCurrent }) => {
   return (
     <div>
       <div className={classes.breadcrumbs__section}>
@@ -13,7 +13,19 @@ const BreadCrumbs = ({ home, current }) => {
               {home}
             </NavLink>
             <span className={classes.breadcrumbs__delimiter}></span>
-            <span className={classes.breadcrumbs__current}>{current}</span>
+            {secondCurrent ? (
+              <>
+                <Link to={`/${current}`} className={classes.breadcrumbs__home}>
+                  {current}
+                </Link>
+                <span className={classes.breadcrumbs__delimiter}></span>
+                <span className={classes.breadcrumbs__current}>
+                  {secondCurrent}
+                </span>
+              </>
+            ) : (
+              <span className={classes.breadcrumbs__current}>{current}</span>
+            )}
           </div>
         </div>
       </div>
