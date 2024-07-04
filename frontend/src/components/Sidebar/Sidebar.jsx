@@ -16,6 +16,8 @@ const Sidebar = () => {
 
   const mediaQuery = useMediaQuery({ maxWidth: 992 });
 
+  const mediaQuery480 = useMediaQuery({ maxWidth: 480 });
+
   useEffect(() => {
     if (mediaQuery) {
       dispatch(sidebarActions.toggle({ status: false }));
@@ -23,6 +25,14 @@ const Sidebar = () => {
       dispatch(sidebarActions.toggle({ status: true }));
     }
   }, [mediaQuery]);
+
+  useEffect(() => {
+    if (mediaQuery480) {
+      dispatch(sidebarActions.toggle({ status: true }));
+    } else {
+      dispatch(sidebarActions.toggle({ status: false }));
+    }
+  }, [mediaQuery480]);
 
   const isSidebar = useSelector((state) => state.sidebar.isSidebar);
 
