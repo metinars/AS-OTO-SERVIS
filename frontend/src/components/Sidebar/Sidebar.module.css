@@ -50,6 +50,13 @@
     color: #fff;
 }
 
+.activeLink {
+    background: #03a9f4;
+    /* Aktif bağlantı arka plan rengi */
+    color: white;
+    /* Aktif bağlantı yazı rengi */
+}
+
 .sidebarContainer .navigation ul li a .icon {
     position: relative;
     display: block;

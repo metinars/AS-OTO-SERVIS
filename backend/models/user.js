@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Lütfen isminizi girin'],
     },
+    userName: {
+      type: String,
+      required: [true, 'Lütfen kullanıcı adınızı girin'],
+      unique: true,
+    },
     email: {
       type: String,
       required: [true, 'Lütfen email adresinizi ekleyin'],
@@ -22,18 +27,12 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
     avatar: {
-      public_id: {
-        type: String,
-        require: true,
-      },
-      url: {
-        type: String,
-        require: true,
-      },
+      type: String,
+      default: '',
     },
     role: {
       type: String,
-      default: 'admin',
+      default: 'user',
     },
     resetPasswordToken: String,
     resetPasswordDate: Date,

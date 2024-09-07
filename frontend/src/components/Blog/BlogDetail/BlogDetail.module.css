@@ -161,6 +161,13 @@
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
+    text-decoration: none;
+}
+
+.recentPosts a {
+    text-decoration: none;
+    color: black;
+
 }
 
 .recentPosts h2 {
@@ -193,7 +200,7 @@
     flex-direction: column;
 }
 
-.recentPostsli a {
+.recentPostsli p {
     text-decoration: none;
     color: #0073aa;
     font-weight: normal;

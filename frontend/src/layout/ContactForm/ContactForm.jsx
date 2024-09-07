@@ -1,5 +1,3 @@
-import Button from '../../components/Button';
-import Input from '../../components/Inputs/Input';
 import classes from './ContactForm.module.css';
 
 import { FaMapMarkerAlt } from 'react-icons/fa';

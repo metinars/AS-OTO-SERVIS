@@ -1,0 +1,46 @@
+.statusMessageContainer {
+    position: absolute;
+    z-index: 1000;
+    right: 10px;
+    top: 0;
+}
+
+.statusMessageContainer .error,
+.statusMessageContainer .success {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.statusMessageContainer .error {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: #D8000C;
+    background-color: #FFBABA;
+    font-size: 22px;
+}
+
+.statusMessageContainer .success {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: #270;
+    background-color: #DFF2BF;
+    font-size: 22px;
+}
+
+.statusMessageContainer .closeBtn {
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 33px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.statusMessageContainer .closeBtn:hover {
+    color: red;
+    transform: scale(1.1);
+}

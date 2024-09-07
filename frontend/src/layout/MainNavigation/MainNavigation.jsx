@@ -64,6 +64,15 @@ const MainNavigation = () => {
                 </li>
                 <li>
                   <NavLink
+                    to="blog"
+                    className={currentURL === '/blog' ? classes.active : ''}
+                    end
+                  >
+                    Blog
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to="iletisim"
                     className={currentURL === '/iletisim' ? classes.active : ''}
                     end

@@ -18,7 +18,7 @@
     width: 100%;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 2fr);
     grid-gap: 20px;
 }
 
@@ -28,7 +28,6 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
     align-items: center;
 }
 
@@ -66,7 +65,7 @@
 
 .dahsboardDetails .recentOrders {
     position: relative;
-    display: grid;
+    /* display: grid; */
     min-height: 530px;
     background: #ffff;
     padding: 20px;
@@ -107,6 +106,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.dahsboardDetails .recentOrders table tr a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
 .dahsboardDetails .recentOrders table tbody tr:last-child {
     border-bottom: none;
 }
@@ -127,13 +132,39 @@
 
 .dahsboardDetails .recentOrders table tbody tr td:nth-child(2),
 .dahsboardDetails .recentOrders table thead tr td:nth-child(2) {
-    text-align: right;
     padding-right: 20px;
 }
 
 .dahsboardDetails .recentOrders table tbody tr td:nth-child(3),
 .dahsboardDetails .recentOrders table thead tr td:nth-child(3) {
     text-align: center;
+}
+
+.dahsboardDetails .recentOrders table tbody tr td.editIcons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.dahsboardDetails .recentOrders table tbody tr td.editIcons span {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.dahsboardDetails .recentOrders table tbody tr td.editIcons span:hover {
+    transform: scale(1.2);
+    /* İkonlar üzerine gelindiğinde büyütme efekti */
+}
+
+.dahsboardDetails .recentOrders table tbody tr td.editIcons a {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.dahsboardDetails .recentOrders table tbody tr td.editIcons a:hover {
+    transform: scale(1.2);
+    /* İkonlar üzerine gelindiğinde büyütme efekti */
 }
 
 .dahsboardDetails .recentOrders .status {

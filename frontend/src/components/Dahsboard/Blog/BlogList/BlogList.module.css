@@ -1,0 +1,140 @@
+.blogListSection {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: hsl(0, 0%, 96%);
+    transition: 0.5s;
+    top: 80px;
+    padding: 1.5rem;
+}
+
+.blogListSection.active {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.tableContainer {
+    overflow-x: auto;
+    position: relative;
+    /* display: grid; */
+    min-height: 530px;
+    background: #ffff;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status {
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.status.delivered {
+    background: #8de02c;
+}
+
+.status.pending {
+    background: #f9ca3f;
+}
+
+.status.return {
+    background: #f00;
+}
+
+.status.inprogress {
+    background: #1795ce;
+}
+
+.blogListSection .tableContainer table tbody tr td.editIcons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.blogListSection .tableContainer table tbody tr td.editIcons a {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.blogListSection .tableContainer table tbody tr td.editIcons a:hover {
+    transform: scale(1.2);
+}
+
+.blogListSection .tableContainer table tbody tr td.editIcons span {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.blogListSection .tableContainer table tbody tr td.editIcons span:hover {
+    transform: scale(1.2);
+}
+
+.blogListSection .tableContainer .status {
+    position: relative;
+    padding: 2px 4px;
+    background: #f00;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.blogListSection .tableContainer .delivered {
+    background: #8de02c;
+}
+
+.blogListSection .tableContainer .pending {
+    background: #f9ca3f;
+}
+
+.blogListSection .tableContainer .return {
+    background: #f00;
+}
+
+.blogListSection .tableContainer .inprogress {
+    background: #1795ce;
+}
+
+@media (max-width: 480px) {
+    .blogListSection {
+        width: 100%;
+        left: 0;
+    }
+
+    .blogListSection.active {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+
+}
