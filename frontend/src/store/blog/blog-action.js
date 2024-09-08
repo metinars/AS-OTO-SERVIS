@@ -26,6 +26,7 @@ export const fetchBlogs = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       thunkAPI.dispatch(fetchBlogsStart());
+      console.log(API_URL + '/blog/getAll');
       const response = await fetch(API_URL + '/blog/getAll');
       const data = await response.json();
       thunkAPI.dispatch(fetchBlogsSuccess(data));
