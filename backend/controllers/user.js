@@ -101,8 +101,6 @@ const login = async (req, res) => {
         .json({ success: false, message: 'Geçersiz kimlik bilgileri' });
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 10000)); // 1 saniye gecikme
-
     const token = await jwt.sign(
       { id: existedUser._id },
       process.env.JWT_TOKEN,
