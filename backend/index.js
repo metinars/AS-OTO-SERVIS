@@ -35,19 +35,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL);
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PUT, PATCH, DELETE'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With, Content-Type, Authorization'
-  );
-  next();
-});
-
 app.get('/', (req, res) => res.json({ message: 'Welcome to our API' }));
 app.use('/user', users);
 app.use('/blog', blogs);
