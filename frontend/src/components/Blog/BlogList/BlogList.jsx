@@ -6,7 +6,7 @@ import { fetchBlogs } from '../../../store/blog/blog-action';
 
 const BlogList = () => {
   const dispatch = useDispatch();
-  const blogData = useSelector((state) => state.blog.blogs.result);
+  const blogData = useSelector((state) => state.blog.blogs);
 
   useEffect(() => {
     dispatch(fetchBlogs());
@@ -31,7 +31,7 @@ const BlogList = () => {
       <div className={classes.content_wrap}>
         {activeBlogs.length > 0 ? (
           activeBlogs.map((blog) => (
-            <Link to={blog.titleUrl} key={blog.titleUrl}>
+            <Link to={blog.titleUrl} key={blog._id}>
               <div className={classes.card}>
                 <div className={classes['card-header']}>
                   <img
