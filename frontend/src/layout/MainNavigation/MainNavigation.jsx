@@ -133,6 +133,12 @@ const MainNavigation = () => {
                       to="iletisim"
                       onClick={() => setIsBurgerButton(!isBurgerButton)}
                     >
+                      Blog
+                    </NavLink>
+                    <NavLink
+                      to="iletisim"
+                      onClick={() => setIsBurgerButton(!isBurgerButton)}
+                    >
                       İletişim
                     </NavLink>
                   </nav>
