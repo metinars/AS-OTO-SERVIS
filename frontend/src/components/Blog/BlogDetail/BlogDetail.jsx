@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogDetail, fetchBlogs } from '../../../store/blog/blog-action';
 
 const BlogDetail = ({ blogDetail, fetchBlogsList }) => {
+  console.log(fetchBlogsList);
   const { titleUrl } = useParams();
   const dispatch = useDispatch();
 

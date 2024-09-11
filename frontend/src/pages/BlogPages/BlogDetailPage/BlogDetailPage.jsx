@@ -19,7 +19,7 @@ const BlogDetailPage = () => {
   }, [dispatch, titleUrl]);
 
   const { blogDetail, loading, error } = useSelector((state) => state.blog);
-  const fetchBlogsList = useSelector((state) => state.blog.blogs.result);
+  const fetchBlogsList = useSelector((state) => state.blog.blogs);
 
   useEffect(() => {
     document.title = `${blogDetail?.title} | As Oto Kaporta`;
