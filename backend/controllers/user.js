@@ -19,7 +19,7 @@ const register = async (req, res) => {
     let avatarUrl = '';
 
     if (req.file) {
-      avatarUrl = `https://${req.get('host')}/uploads/users/${
+      avatarUrl = `https://${req.get('host')}/api/uploads/users/${
         req.file.filename
       }`;
     }
