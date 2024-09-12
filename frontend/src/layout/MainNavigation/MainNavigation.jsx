@@ -118,25 +118,25 @@ const MainNavigation = () => {
                       Ana Sayfa
                     </NavLink>
                     <NavLink
-                      to="hakkimizda"
+                      to="/hakkimizda"
                       onClick={() => setIsBurgerButton(!isBurgerButton)}
                     >
                       Hakkımızda
                     </NavLink>
                     <NavLink
-                      to="hizmetlerimiz"
+                      to="/hizmetlerimiz"
                       onClick={() => setIsBurgerButton(!isBurgerButton)}
                     >
                       Hizmetlerimiz
                     </NavLink>
                     <NavLink
-                      to="iletisim"
+                      to="/blog"
                       onClick={() => setIsBurgerButton(!isBurgerButton)}
                     >
                       Blog
                     </NavLink>
                     <NavLink
-                      to="iletisim"
+                      to="/iletisim"
                       onClick={() => setIsBurgerButton(!isBurgerButton)}
                     >
                       İletişim

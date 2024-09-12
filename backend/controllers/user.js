@@ -19,7 +19,7 @@ const register = async (req, res) => {
     let avatarUrl = '';
 
     if (req.file) {
-      avatarUrl = `${req.protocol}://${req.get('host')}/uploads/users/${
+      avatarUrl = `https://${req.get('host')}/uploads/users/${
         req.file.filename
       }`;
     }
@@ -72,6 +72,8 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { userName, password } = req.body;
+
+    console.log(req, 'req');
 
     if (!userName || !password) {
       return res
