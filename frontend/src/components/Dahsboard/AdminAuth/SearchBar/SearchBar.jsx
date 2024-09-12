@@ -18,7 +18,9 @@ const SearchBar = () => {
     <form className={classes.search} onSubmit={handleSearch}>
       <label>
         <input type="text" name="searchInput" placeholder="Buradan Ara" />
-        <FaSearch type="submit" />
+        <button type="submit" onMouseDown={(e) => e.preventDefault()}>
+          <FaSearch />
+        </button>
       </label>
     </form>
   );

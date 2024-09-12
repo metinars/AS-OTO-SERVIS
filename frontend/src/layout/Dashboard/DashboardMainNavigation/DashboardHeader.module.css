@@ -58,14 +58,36 @@
     border-radius: 40px;
     padding: 5px 20px;
     padding-left: 36px;
+    transition: 0.5s;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.adminHeader .search label svg {
+.adminHeader .search button {
+    cursor: pointer;
+    transition: 0.5s;
     position: absolute;
-    left: 15px;
-    top: 4px;
+    left: 0px;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    background-color: #03A9F4;
+    padding: 12px 10px;
+}
+
+.adminHeader .search input:focus+button {
+    left: auto;
+    right: 33px;
+    border-radius: 0 20px 20px 0;
+    transform: translateX(100%);
+}
+
+.adminHeader .search input:focus {
+    padding-left: 10px;
+}
+
+.adminHeader .search label svg {
+    color: #fff;
 }
 
 .adminHeader .user {

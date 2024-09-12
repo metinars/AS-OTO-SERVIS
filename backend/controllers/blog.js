@@ -146,10 +146,8 @@ const editBlog = async (req, res) => {
 };
 
 const searchBlogs = async (req, res) => {
-  console.log('Girdi kanks');
   try {
-    const { title } = req.params; // Burada title query parametresini alıyoruz
-    console.log('Search term:', title); // Debugging için log ekleyin
+    const { title } = req.params;
 
     if (!title) {
       return res
