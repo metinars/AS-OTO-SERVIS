@@ -9,6 +9,7 @@ const blogs = require('./routes/blogs');
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const path = require('path');
+const siteMapRoutes = require('./routes/sitemap');
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+app.use('/', siteMapRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
