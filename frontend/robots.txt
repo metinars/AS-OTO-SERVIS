@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /auth/
+Disallow: /forgot/
+Disallow: /reset/
+
+Sitemap: https://www.asotokaporta.com/sitemap.xml
