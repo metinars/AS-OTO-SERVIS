@@ -24,6 +24,8 @@ const BlogList = () => {
     return <div>Blog verileri yüklenemedi.</div>;
   }
 
+  console.log(blogData);
+
   const activeBlogs = blogData.filter((blog) => blog.status === 'aktif');
 
   return (

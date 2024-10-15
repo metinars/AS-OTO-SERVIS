@@ -12,6 +12,8 @@ const BlogDetail = ({ blogDetail, fetchBlogsList }) => {
   const { titleUrl } = useParams();
   const dispatch = useDispatch();
 
+  const activeBlogs = fetchBlogsList.filter((blog) => blog.status === 'aktif');
+
   const hasImages = blogDetail?.images && blogDetail.images.length > 0;
 
   return (
@@ -65,7 +67,7 @@ const BlogDetail = ({ blogDetail, fetchBlogsList }) => {
           <div className={classes.recentPosts}>
             <h2>Son Eklenen Bloglar</h2>
             <ul>
-              {fetchBlogsList?.map((blogs) => (
+              {activeBlogs?.map((blogs) => (
                 <Link to={`/blog/${blogs?.titleUrl}`} key={blogs?.titleUrl}>
                   <li className={classes.postItem}>
                     <img
