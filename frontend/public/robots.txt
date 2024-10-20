@@ -1,6 +1,10 @@
-User-agent: *
+User-agent: Googlebot
 Disallow: /auth/
+Allow: /blog/
+
+User-agent: Bingbot
 Disallow: /forgot/
 Disallow: /reset/
+Allow: /blog/
 
 Sitemap: https://www.asotokaporta.com/sitemap.xml
