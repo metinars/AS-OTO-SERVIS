@@ -5,7 +5,7 @@ import { IoCallSharp } from 'react-icons/io5';
 import { IoMail } from 'react-icons/io5';
 
 const ContactForm = () => {
-  const phoneNumber = '(542) 744 26 28';
+  const phoneNumber = '(538) 911 83 09';
 
   const handleCallClick = () => {
     window.location.href = `tel:${phoneNumber}`;
@@ -40,7 +40,7 @@ const ContactForm = () => {
             <span className={classes.markerIcon}>
               <IoCallSharp />
             </span>
-            <span>(542) 744 26 28</span>
+            <span>{phoneNumber}</span>
           </div>
           <div className={classes.mail} onClick={handleMailClick}>
             <span className={classes.markerIcon}>

@@ -5,7 +5,7 @@ import repair1 from '../../assets/images/home/fuseRepair/repair-1.jpg';
 import repair2 from '../../assets/images/home/fuseRepair/repair-2.jpg';
 
 const FuseRepair = () => {
-  const phoneNumber = '(542) 744 26 28';
+  const phoneNumber = '(538) 911 83 09';
 
   const handleCallClick = () => {
     window.location.href = `tel:${phoneNumber}`;

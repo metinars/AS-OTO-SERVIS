@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import classes from './Footer.module.css';
 
 const Footer = () => {
-  const phoneNumber = '(542) 744 26 28';
+  const phoneNumber = '(538) 911 83 09';
 
   const handleCallClick = () => {
     window.location.href = `tel:${phoneNumber}`;
@@ -40,7 +40,7 @@ const Footer = () => {
               {address}
             </div>
             <div className={classes.phone} onClick={handleCallClick}>
-              Erbil Arslan Tel: (542) 744 26 28
+              Erbil Arslan Tel: {phoneNumber}
             </div>
             <div className={classes.mail} onClick={handleMailClick}>
               {mailAddress}

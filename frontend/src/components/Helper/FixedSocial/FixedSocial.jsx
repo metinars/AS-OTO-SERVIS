@@ -5,7 +5,7 @@ import classes from './FixedSocial.module.css';
 function FixedSocial() {
   return (
     <div className={classes.fixed__social}>
-      <a href="tel:05427442628">
+      <a href="tel:05389118309">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="42"
