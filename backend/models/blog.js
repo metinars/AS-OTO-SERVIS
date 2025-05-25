@@ -30,21 +30,31 @@ const blogSchema = new mongoose.Schema(
     },
     titleUrl: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
     },
     uId: {
       type: String,
-      require: true,
+      required: true,
     },
     uName: {
       type: String,
-      require: true,
+      required: true,
     },
-    titleUrl: {
+
+    metaTitle: {
       type: String,
-      require: true,
+      default: '',
     },
+    metaDescription: {
+      type: String,
+      default: '',
+    },
+    metaKeywords: {
+      type: [String],
+      default: [],
+    },
+
     createdAt: {
       type: Date,
       default: Date.now,

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet'; // Helmet eklendi
 
 import BreadCrumbs from '../../../layout/BreadCrumbs';
 import BlogDetail from '../../../components/Blog/BlogDetail';
@@ -21,23 +22,37 @@ const BlogDetailPage = () => {
   const { blogDetail, loading, error } = useSelector((state) => state.blog);
   const fetchBlogsList = useSelector((state) => state.blog.blogs);
 
-  useEffect(() => {
-    document.title = `${blogDetail?.title} | As Oto Kaporta`;
-  }, [blogDetail]);
-
   if (loading) return <p>Yükleniyor...</p>;
   if (error) return <p>Hata: {error}</p>;
   if (!blogDetail) return <p>Blog bulunamadı</p>;
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      {/* <BreadCrumbs
-        home={'ana sayfa'}
-        current={'blog'}
-        secondCurrent={'blog detay title'}
-      /> */}
-      <BlogDetail blogDetail={blogDetail} fetchBlogsList={fetchBlogsList} />
-    </motion.div>
+    <>
+      <Helmet>
+        <title>
+          {blogDetail.metaTitle || `${blogDetail.title} | As Oto Kaporta`}
+        </title>
+        <meta
+          name="description"
+          content={
+            blogDetail.metaDescription || 'AS Oto Kaporta blog detay sayfası'
+          }
+        />
+        <meta
+          name="keywords"
+          content={blogDetail.metaKeywords || 'oto, kaporta, as oto kaporta'}
+        />
+      </Helmet>
+
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        {/* <BreadCrumbs
+          home={'ana sayfa'}
+          current={'blog'}
+          secondCurrent={'blog detay title'}
+        /> */}
+        <BlogDetail blogDetail={blogDetail} fetchBlogsList={fetchBlogsList} />
+      </motion.div>
+    </>
   );
 };
 

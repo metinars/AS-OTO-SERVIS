@@ -8,12 +8,18 @@ const EditBlog = ({ blogEditData, isSidebar, onSave }) => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [status, setStatus] = useState('aktif');
+  const [metaTitle, setMetaTitle] = useState('');
+  const [metaDescription, setMetaDescription] = useState('');
+  const [metaKeywords, setMetaKeywords] = useState(''); // ✅ keywords için state
 
   useEffect(() => {
     if (blogEditData) {
       setTitle(blogEditData.title || '');
       setDesc(blogEditData.desc || '');
       setStatus(blogEditData.status || 'aktif');
+      setMetaTitle(blogEditData.metaTitle || '');
+      setMetaDescription(blogEditData.metaDescription || '');
+      setMetaKeywords(blogEditData.metaKeywords || ''); // ✅ keywords verisi yüklensin
 
       if (blogEditData.images && blogEditData.images.length > 0) {
         const fileObjects = blogEditData.images.map((image) => ({
@@ -33,6 +39,9 @@ const EditBlog = ({ blogEditData, isSidebar, onSave }) => {
         title,
         desc,
         status,
+        metaTitle,
+        metaDescription,
+        metaKeywords, // ✅ keywords backend'e gitsin
         images: files.map((file) => ({
           url: file.url,
           public_id: file.public_id || null,
@@ -62,6 +71,7 @@ const EditBlog = ({ blogEditData, isSidebar, onSave }) => {
       <div className={classes.editContainer}>
         <div className={classes.editForm}>
           <form>
+            {/* Başlık */}
             <div className={classes.formGroup}>
               <label htmlFor="title">Başlık</label>
               <input
@@ -73,6 +83,47 @@ const EditBlog = ({ blogEditData, isSidebar, onSave }) => {
                 className={classes.input}
               />
             </div>
+
+            {/* Meta Başlık */}
+            <div className={classes.formGroup}>
+              <label htmlFor="metaTitle">Meta Başlık</label>
+              <input
+                name="metaTitle"
+                type="text"
+                id="metaTitle"
+                value={metaTitle}
+                onChange={(e) => setMetaTitle(e.target.value)}
+                className={classes.input}
+              />
+            </div>
+
+            {/* Meta Açıklama */}
+            <div className={classes.formGroup}>
+              <label htmlFor="metaDescription">Meta Açıklama</label>
+              <textarea
+                name="metaDescription"
+                id="metaDescription"
+                value={metaDescription}
+                onChange={(e) => setMetaDescription(e.target.value)}
+                className={classes.input}
+                rows="3"
+              ></textarea>
+            </div>
+
+            {/* Meta Anahtar Kelimeler */}
+            <div className={classes.formGroup}>
+              <label htmlFor="metaKeywords">Meta Anahtar Kelimeler</label>
+              <textarea
+                name="metaKeywords"
+                id="metaKeywords"
+                value={metaKeywords}
+                onChange={(e) => setMetaKeywords(e.target.value)}
+                className={classes.input}
+                rows="3"
+              ></textarea>
+            </div>
+
+            {/* Açıklama */}
             <div className={classes.formGroup}>
               <label htmlFor="description">Açıklama</label>
               <Editor
@@ -112,10 +163,14 @@ const EditBlog = ({ blogEditData, isSidebar, onSave }) => {
                 className={classes.editor}
               />
             </div>
+
+            {/* Görseller */}
             <div className={classes.formGroup}>
               <label htmlFor="images">Görsel</label>
               <ImageDropzone files={files} setFiles={setFiles} />
             </div>
+
+            {/* Durum */}
             <div className={classes.formGroup}>
               <label htmlFor="isActive">Durum</label>
               <select
@@ -129,6 +184,8 @@ const EditBlog = ({ blogEditData, isSidebar, onSave }) => {
                 <option value="pasif">Pasif</option>
               </select>
             </div>
+
+            {/* Kaydet Butonu */}
             <button
               type="button"
               className={classes.button}

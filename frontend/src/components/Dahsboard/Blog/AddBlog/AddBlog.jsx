@@ -18,6 +18,9 @@ const AddBlog = () => {
     desc: '',
     images: [],
     isActive: 'true',
+    metaTitle: '', // eklendi
+    metaDescription: '', // eklendi
+    metaKeywords: '', // eklendi
   });
 
   const blogHandle = (e) => {
@@ -74,6 +77,46 @@ const AddBlog = () => {
             className={classes.input}
           />
         </div>
+
+        <div className={classes.formGroup}>
+          <label htmlFor="metaTitle">Meta Başlık</label>
+          <input
+            name="metaTitle"
+            type="text"
+            id="metaTitle"
+            value={blogData.metaTitle}
+            onChange={blogHandle}
+            className={classes.input}
+            placeholder="SEO için meta başlık"
+          />
+        </div>
+
+        <div className={classes.formGroup}>
+          <label htmlFor="metaDescription">Meta Açıklama</label>
+          <textarea
+            name="metaDescription"
+            id="metaDescription"
+            value={blogData.metaDescription}
+            onChange={blogHandle}
+            className={classes.input}
+            placeholder="SEO için meta açıklama"
+            rows={3}
+          />
+        </div>
+
+        <div className={classes.formGroup}>
+          <label htmlFor="metaKeywords">Anahtar Kelimeler</label>
+          <input
+            name="metaKeywords"
+            type="text"
+            id="metaKeywords"
+            value={blogData.metaKeywords}
+            onChange={blogHandle}
+            className={classes.input}
+            placeholder="Virgülle ayrılmış anahtar kelimeler"
+          />
+        </div>
+
         <div className={classes.formGroup}>
           <label htmlFor="description">Açıklama</label>
           <Editor
