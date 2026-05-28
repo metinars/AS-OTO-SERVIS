@@ -94,7 +94,7 @@ const login = async (req, res) => {
 
     const correctedPassword = await bcrypt.compare(
       password,
-      existedUser.password
+      existedUser.password,
     );
 
     if (!correctedPassword) {
@@ -108,7 +108,7 @@ const login = async (req, res) => {
       process.env.JWT_TOKEN,
       {
         expiresIn: '1h',
-      }
+      },
     );
 
     existedUser.password = undefined;

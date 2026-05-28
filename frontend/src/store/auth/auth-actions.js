@@ -34,7 +34,7 @@ export const fetchUsers = createAsyncThunk(
     } catch (error) {
       thunkAPI.dispatch(fetchUsersFailure(error.message));
     }
-  }
+  },
 );
 
 export const login = createAsyncThunk(
@@ -42,6 +42,7 @@ export const login = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       thunkAPI.dispatch(loginStart());
+      console.log(`${API_URL}/user/login`, 'feer');
 
       const response = await fetch(`${API_URL}/user/login`, {
         method: 'POST',
@@ -64,7 +65,7 @@ export const login = createAsyncThunk(
       thunkAPI.dispatch(loginFailure(error.message));
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
@@ -84,7 +85,7 @@ export const forgotPasswordPost = createAsyncThunk(
 
       const response = await fetch(
         API_URL + '/user/forgotPassword',
-        requestOptions
+        requestOptions,
       );
 
       if (!response.ok) {
@@ -98,7 +99,7 @@ export const forgotPasswordPost = createAsyncThunk(
     } catch (error) {
       return thunkAPI.dispatch(forgotPasswordFaillure(error.message));
     }
-  }
+  },
 );
 
 export const resetPassPost = createAsyncThunk(
@@ -114,7 +115,7 @@ export const resetPassPost = createAsyncThunk(
 
       const response = await fetch(
         `${API_URL}/user/reset/${params.token.token}`,
-        requestOptions
+        requestOptions,
       );
       let res = await response.json();
       thunkAPI.dispatch(resetPasswordSuccess(res));
@@ -123,7 +124,7 @@ export const resetPassPost = createAsyncThunk(
       thunkAPI.dispatch(resetPasswordFaillure(error.message));
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const changePassword = createAsyncThunk(
@@ -154,7 +155,7 @@ export const changePassword = createAsyncThunk(
       thunkAPI.dispatch(changePasswordFailure(error.message));
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const addUser = createAsyncThunk(
@@ -194,5 +195,5 @@ export const addUser = createAsyncThunk(
       thunkAPI.dispatch(addUserFaillure(error.message));
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );

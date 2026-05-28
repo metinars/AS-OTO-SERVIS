@@ -51,7 +51,7 @@ const BlogList = () => {
                     alt={blog.uName}
                   />
                   <div className={classes.author}>
-                    <p>{blog.uName}</p>
+                    <p>{blog.name}</p>
                     <small>{formatDate(blog.createdAt)}</small>
                   </div>
                 </div>
