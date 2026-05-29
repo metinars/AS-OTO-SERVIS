@@ -46,12 +46,15 @@ const OurServices = () => {
           className={classes.service__box}
         >
           <div className={classes.service__avatar}>
-            <img src={s1} alt="Sigorta Hasar Onarım" />
+            <img src={s5} alt="Araç Taban Onarımı" />
           </div>
-          <div className={classes.service__title}>Sigorta Hasar Onarımı</div>
+          <div className={classes.service__title}>
+            Boyasız Göçük Onarımı (PDR)
+          </div>
           <div className={classes.service__content}>
-            Tüm sigorta şirketleri kapsamında, aracınız bir kaza yaptığında
-            takibini yapar ve hasar onarım işlemlerini hızlandırır.
+            Boyasız Göçük Onarımı (PDR) hizmetimiz ile aracınızın orijinal
+            boyasını koruyarak dolu ve park hasarlarını profesyonel şekilde
+            onarıyoruz.
           </div>
         </motion.div>
         <motion.div
@@ -104,12 +107,12 @@ const OurServices = () => {
           className={classes.service__box}
         >
           <div className={classes.service__avatar}>
-            <img src={s5} alt="Araç Taban Onarımı" />
+            <img src={s1} alt="Sigorta Hasar Onarım" />
           </div>
-          <div className={classes.service__title}>Araç Taban Onarımı</div>
+          <div className={classes.service__title}>Sigorta Hasar Onarımı</div>
           <div className={classes.service__content}>
-            Aracınızın tabanındaki hasar ve zamanın vermiş olduğu çürümeye
-            çözümler sunuyoruz.
+            Tüm sigorta şirketleri kapsamında, aracınız bir kaza yaptığında
+            takibini yapar ve hasar onarım işlemlerini hızlandırır.
           </div>
         </motion.div>
         <motion.div
