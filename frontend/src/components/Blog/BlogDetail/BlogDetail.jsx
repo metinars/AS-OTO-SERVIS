@@ -1,94 +1,121 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { CiSearch } from 'react-icons/ci';
+import { FaCalendarAlt, FaUserAlt } from 'react-icons/fa';
+
 import classes from './BlogDetail.module.css';
 import blog1 from '../../../assets/images/blog/post5-890x664.jpg';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBlogDetail, fetchBlogs } from '../../../store/blog/blog-action';
 
-const BlogDetail = ({ blogDetail, fetchBlogsList }) => {
-  console.log(fetchBlogsList);
-  const { titleUrl } = useParams();
-  const dispatch = useDispatch();
-
-  const activeBlogs = fetchBlogsList.filter((blog) => blog.status === 'aktif');
+const BlogDetail = ({ blogDetail, fetchBlogsList = [] }) => {
+  const activeBlogs = fetchBlogsList
+    .filter((blog) => blog.status === 'aktif')
+    .filter((blog) => blog.titleUrl !== blogDetail?.titleUrl)
+    .slice(0, 6);
 
   const hasImages = blogDetail?.images && blogDetail.images.length > 0;
 
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    return new Date(dateString).toLocaleDateString('tr-TR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+  };
+
   return (
-    <div className={classes.container}>
-      <div className={classes.blogTopImage}>
+    <article className={classes.container}>
+      <section className={classes.hero}>
         <div className={classes.imageOverlay}></div>
-        {hasImages ? (
-          <img
-            src={blogDetail.images[0]?.url}
-            alt={blogDetail?.title}
-            className={classes.image}
-          />
-        ) : (
-          <img
-            src={blog1}
-            alt="Varsayılan Blog Resmi"
-            className={classes.image}
-          />
-        )}
-        <h1 className={classes.title}>{blogDetail?.title}</h1>
-      </div>
-      <div className={classes.content}>
-        <div className={classes.mainContent}>
-          <h2 className={classes.blogSectionTitle}>{blogDetail?.title}</h2>
-          <p
-            className={classes.blogContent}
-            dangerouslySetInnerHTML={{ __html: blogDetail?.desc || '' }}
-          />
-          {/* {hasImages && (
+
+        <img
+          src={hasImages ? blogDetail.images[0]?.url : blog1}
+          alt={blogDetail?.title || 'As Oto Kaporta Blog'}
+          className={classes.image}
+        />
+
+        <div className={classes.heroContent}>
+          <span>AS OTO KAPORTA BLOG</span>
+          <h1>{blogDetail?.title}</h1>
+
+          <div className={classes.meta}>
             <div>
-              {blogDetail.images.map((image) => (
-                <img
-                  key={image.public_id}
-                  src={image.url}
-                  alt={blogDetail?.title}
-                />
-              ))}
+              <FaUserAlt />
+              <span>{blogDetail?.name || 'As Oto Kaporta'}</span>
             </div>
-          )} */}
-        </div>
-        <div className={classes.sidebar}>
-          <h3 className={classes.sidebarTitle}>Ara</h3>
-          <div className={classes.search}>
-            <input
-              type="text"
-              placeholder="Ara.."
-              className={classes.searchInput}
-            />
-            <CiSearch className={classes.searchIcon} />
+
+            <div>
+              <FaCalendarAlt />
+              <span>{formatDate(blogDetail?.createdAt)}</span>
+            </div>
           </div>
-          <div className={classes.recentPosts}>
-            <h2>Son Eklenen Bloglar</h2>
-            <ul>
-              {activeBlogs?.map((blogs) => (
-                <Link to={`/blog/${blogs?.titleUrl}`} key={blogs?.titleUrl}>
-                  <li className={classes.postItem}>
-                    <img
-                      src={blogs?.images[0]?.url}
-                      alt={''}
-                      className={classes.postImage}
-                    />
-                    <div className={classes.postInfo}>
-                      <p>{blogs?.title}</p>
-                      <span className={classes.postDate}>
-                        {new Date(blogs.createdAt).toLocaleDateString('tr-TR')}
-                      </span>
-                    </div>
-                  </li>
+        </div>
+      </section>
+
+      <section className={classes.content}>
+        <main className={classes.mainContent}>
+          <div className={classes.articleCard}>
+            <h2>{blogDetail?.title}</h2>
+
+            <div
+              className={classes.blogContent}
+              dangerouslySetInnerHTML={{ __html: blogDetail?.desc || '' }}
+            />
+          </div>
+        </main>
+
+        <aside className={classes.sidebar}>
+          <div className={classes.sidebarCard}>
+            <h3>Bloglarda Ara</h3>
+
+            <div className={classes.search}>
+              <input
+                type="text"
+                placeholder="Blog ara..."
+                className={classes.searchInput}
+              />
+              <CiSearch className={classes.searchIcon} />
+            </div>
+          </div>
+
+          <div className={classes.sidebarCard}>
+            <h3>Son Eklenen Bloglar</h3>
+
+            <div className={classes.recentPosts}>
+              {activeBlogs?.map((blog) => (
+                <Link
+                  to={`/blog/${blog?.titleUrl}`}
+                  key={blog?._id || blog?.titleUrl}
+                  className={classes.postItem}
+                >
+                  <img
+                    src={blog?.images[0]?.url || blog1}
+                    alt={blog?.title || 'As Oto Kaporta Blog'}
+                    className={classes.postImage}
+                    loading="lazy"
+                  />
+
+                  <div className={classes.postInfo}>
+                    <p>{blog?.title}</p>
+                    <span>{formatDate(blog.createdAt)}</span>
+                  </div>
                 </Link>
               ))}
-            </ul>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+
+          <div className={classes.ctaCard}>
+            <span>Kırşehir As Oto Kaporta</span>
+            <h3>Aracınızda Hasar mı Var?</h3>
+            <p>
+              Kaporta, boya, PDR, sigorta ve kasko hasar onarımı için bizimle
+              iletişime geçebilirsiniz.
+            </p>
+            <a href="tel:+905389118309">Hemen Ara</a>
+          </div>
+        </aside>
+      </section>
+    </article>
   );
 };
 

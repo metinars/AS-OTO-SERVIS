@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5173",
     "build": "vite build",
     "postbuild": "cp public/robots.txt dist/robots.txt && cp public/BingSiteAuth.xml dist/BingSiteAuth.xml",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
