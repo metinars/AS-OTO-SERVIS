@@ -1,40 +1,259 @@
-.aboutus__section {
-    width: 100vw;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 5rem;
+.page {
+    background: #f7f8fa;
+    color: #1f2933;
 }
 
-.aboutus__title {
-    color: #FE600A;
-    font-family: 'Barlow Condensed';
-    font-size: 57px;
-    padding: 1.5rem 0rem;
+.hero {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 5.5rem 0 4rem;
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 2rem;
+    align-items: center;
 }
 
-@media (max-width: 767px) {
-    .aboutus__section {
-        padding: 2rem;
+.heroContent span,
+.sectionTag {
+    display: inline-block;
+    color: #fe610c;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+}
+
+.heroContent h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 5.4rem);
+    line-height: 0.98;
+    color: #0f2537;
+    margin-bottom: 1.4rem;
+}
+
+.heroContent p {
+    max-width: 760px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #4b5563;
+}
+
+.heroButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+}
+
+.heroButtons button,
+.heroButtons a,
+.ctaButtons button,
+.ctaButtons a {
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    background: #fe610c;
+    color: #ffffff;
+    padding: 0.95rem 1.35rem;
+    border-radius: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 0.98rem;
+    transition: 0.22s ease;
+}
+
+.heroButtons a,
+.ctaButtons a {
+    background: #0f2537;
+}
+
+.heroButtons button:hover,
+.heroButtons a:hover,
+.ctaButtons button:hover,
+.ctaButtons a:hover {
+    transform: translateY(-3px);
+}
+
+.heroCard {
+    background: linear-gradient(135deg, #0f2537, #18384f);
+    color: #ffffff;
+    border-radius: 1.4rem;
+    padding: 2.4rem;
+    box-shadow: 0 22px 50px rgba(15, 37, 55, 0.18);
+}
+
+.heroCard strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: #fe610c;
+}
+
+.heroCard span {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    margin: 0.8rem 0;
+}
+
+.heroCard p {
+    color: #d6d6d8;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.7;
+}
+
+.contentSection {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding-bottom: 5rem;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.left,
+.rightBox,
+.storyBox,
+.ctaBox,
+.infoCards div {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    box-shadow: 0 12px 32px rgba(15, 37, 55, 0.06);
+}
+
+.left h2,
+.storyBox h2,
+.ctaBox h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem;
+    color: #0f2537;
+    margin-bottom: 1rem;
+}
+
+.left p,
+.storyBox p,
+.ctaBox p,
+.infoCards p,
+.rightBox li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: #4b5563;
+}
+
+.rightBox {
+    background: #0f2537;
+    color: #ffffff;
+}
+
+.rightBox h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.rightBox ul {
+    padding-left: 1.2rem;
+}
+
+.rightBox li {
+    color: #d6d6d8;
+    margin-bottom: 0.8rem;
+}
+
+.infoCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.infoCards h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #0f2537;
+    font-size: 1.55rem;
+    margin-bottom: 0.8rem;
+}
+
+.storyBox {
+    margin-bottom: 1.5rem;
+}
+
+.ctaBox {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2537, #18384f);
+}
+
+.ctaBox h2 {
+    color: #ffffff;
+}
+
+.ctaBox p {
+    color: #d6d6d8;
+}
+
+.ctaButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 1050px) {
+
+    .hero,
+    .contentGrid,
+    .ctaBox {
+        grid-template-columns: 1fr;
+    }
+
+    .infoCards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ctaBox {
+        display: grid;
     }
 }
 
-.aboutus__button {
-    padding: 17px 50px;
-    margin-top: 1rem;
-    background-color: #FE600E;
-    border-color: #FE600E;
-    color: #F4F4F4;
-    font-size: 16px;
-    font-weight: 800;
-    font-family: 'DM Sans';
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+@media (max-width: 650px) {
+    .hero {
+        padding: 3.5rem 0 2.5rem;
+    }
 
-.aboutus__button:hover {
-    background-color: #E05200;
-    color: #FFFFFF;
+    .infoCards {
+        grid-template-columns: 1fr;
+    }
+
+    .left,
+    .rightBox,
+    .storyBox,
+    .ctaBox,
+    .infoCards div,
+    .heroCard {
+        padding: 1.5rem;
+    }
+
+    .heroContent h1 {
+        font-size: 2.9rem;
+    }
+
+    .left h2,
+    .storyBox h2,
+    .ctaBox h2 {
+        font-size: 2rem;
+    }
 }

@@ -3,75 +3,124 @@ import { NavLink } from 'react-router-dom';
 import classes from './Footer.module.css';
 
 const Footer = () => {
-  const phoneNumber = '(538) 911 83 09';
+  const phoneDisplay = '0 (538) 911 83 09';
+  const phoneHref = '+905389118309';
+  const mailAddress = 'asotoservis40@gmail.com';
+
+  const mapsUrl =
+    'https://www.google.com.tr/search?kgmid=/g/11s50ww3wg&q=As+Oto+Kaporta+%26+Boyas%C4%B1z+G%C3%B6%C3%A7%C3%BCk+D%C3%BCzeltme';
+
+  const whatsappUrl = `https://wa.me/905389118309`;
+
+  const address =
+    'Kılıçözü Sanayi Sitesi, Sanayi Camii Karşısı, Merkez/Kırşehir';
+
+  const year = new Date().getFullYear();
 
   const handleCallClick = () => {
-    window.location.href = `tel:${phoneNumber}`;
+    window.location.href = `tel:${phoneHref}`;
   };
-
-  const address = 'Kılıçözü Sanayi Sitesi 29-A Blok No: 5, Merkez/Kırşehir';
 
   const handleAddressClick = () => {
-    window.open(
-      'https://www.google.com.tr/maps/place//data=!4m2!3m1!1s0x14d5739aa5fa3b03:0xbd5e3aa18bc2f7e2?sa=X&ved=1t:8290&ictx=111',
-      '_blank'
-    );
+    window.open(mapsUrl, '_blank');
   };
-
-  const mailAddress = 'asotoservis40@gmail.com';
 
   const handleMailClick = () => {
     window.location.href = `mailto:${mailAddress}`;
   };
+
   return (
-    <div className={classes.footer__section}>
-      <div className={classes.footer__container}>
-        <div className={classes.footer__content}>
-          <div className={classes.footer__logo}>
-            <div className={classes.logo__title}>AS OTO KAPORTA</div>
-            <div className={classes.logo__subtitle}>
-              Kırşehir Merkez Kaporta Onarım
-            </div>
-            <div className={classes.logo__name}>Erbil Arslan</div>
+    <footer className={classes.footerSection}>
+      <div className={classes.footerTop}>
+        <div className={classes.brandBox}>
+          <div className={classes.logoTitle}>
+            AS OTO <span>KAPORTA</span>
           </div>
-          <div className={classes.contact__info}>
-            <div className={classes.footer__title}>BİZE ULAŞIN</div>
-            <div className={classes.adress} onClick={handleAddressClick}>
-              {address}
-            </div>
-            <div className={classes.phone} onClick={handleCallClick}>
-              Erbil Arslan Tel: {phoneNumber}
-            </div>
-            <div className={classes.mail} onClick={handleMailClick}>
-              {mailAddress}
-            </div>
-          </div>
-          <div className={classes.page__links}>
-            <div className={classes.footer__title}>BAĞLANTILAR</div>
-            <NavLink to={'/'} className={classes.footer__link}>
-              Ana Sayfa
-            </NavLink>
-            <NavLink to={'hakkimizda'} className={classes.footer__link}>
-              Hakkımızda
-            </NavLink>
-            <NavLink to={'hizmetlerimiz'} className={classes.footer__link}>
-              Hizmetlerimiz
-            </NavLink>
-            <NavLink to={'blog'} className={classes.footer__link}>
-              Blog
-            </NavLink>
-            <NavLink to={'iletisim'} className={classes.footer__link}>
-              İletişim
-            </NavLink>
+
+          <p>
+            Kırşehir’de kaporta onarımı, oto boya, boyasız göçük onarımı (PDR),
+            sigorta ve kasko hasar onarımı hizmetlerinde titiz işçilik
+            anlayışıyla hizmet veriyoruz.
+          </p>
+
+          <div className={classes.ctaRow}>
+            <button type="button" onClick={handleCallClick}>
+              Hemen Ara
+            </button>
+
+            <a href={whatsappUrl} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
           </div>
         </div>
+
+        <div className={classes.footerColumn}>
+          <h3>Hizmetlerimiz</h3>
+
+          <NavLink to="/hizmetler/kirsehir-oto-kaporta">
+            Kırşehir Oto Kaporta
+          </NavLink>
+          <NavLink to="/hizmetler/kirsehir-boyasiz-gocuk-onarimi">
+            Boyasız Göçük Onarımı PDR
+          </NavLink>
+          <NavLink to="/hizmetler/kirsehir-oto-boya">Kırşehir Oto Boya</NavLink>
+          <NavLink to="/hizmetler/kirsehir-sigorta-kasko-hasar-onarimi">
+            Sigorta ve Kasko Hasar Onarımı
+          </NavLink>
+          <NavLink to="/hizmetler/kirsehir-lokal-boya">
+            Kırşehir Lokal Boya
+          </NavLink>
+          <NavLink to="/hizmetler/kirsehir-dolu-hasari-onarimi">
+            Dolu Hasarı Onarımı
+          </NavLink>
+        </div>
+
+        <div className={classes.footerColumn}>
+          <h3>Sayfalar</h3>
+
+          <NavLink to="/">Ana Sayfa</NavLink>
+          <NavLink to="/hakkimizda">Hakkımızda</NavLink>
+          <NavLink to="/hizmetlerimiz">Hizmetlerimiz</NavLink>
+          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/iletisim">İletişim</NavLink>
+        </div>
+
+        <div className={classes.contactBox}>
+          <h3>Bize Ulaşın</h3>
+
+          <button type="button" onClick={handleAddressClick}>
+            <span>Adres</span>
+            {address}
+          </button>
+
+          <button type="button" onClick={handleCallClick}>
+            <span>Telefon</span>
+            {phoneDisplay}
+          </button>
+
+          <button type="button" onClick={handleMailClick}>
+            <span>E-posta</span>
+            {mailAddress}
+          </button>
+
+          <a href={mapsUrl} target="_blank" rel="noreferrer">
+            Google Maps Konumunu Aç
+          </a>
+        </div>
       </div>
+
+      <div className={classes.localSeoBar}>
+        <span>Kırşehir Kaportacı</span>
+        <span>Kırşehir Oto Kaporta</span>
+        <span>Kırşehir PDR</span>
+        <span>Kırşehir Oto Boya</span>
+        <span>Kırşehir Sigorta Hasar Onarımı</span>
+      </div>
+
       <div className={classes.copyright}>
-        <p>
-          © <span id="displayYear">2024</span> As Oto Kaporta Her hakkı saklıdır
-        </p>
+        <p>© {year} As Oto Kaporta. Her hakkı saklıdır.</p>
       </div>
-    </div>
+    </footer>
   );
 };
 

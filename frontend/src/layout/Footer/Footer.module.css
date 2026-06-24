@@ -1,143 +1,220 @@
-.footer__section {
-    width: 100vw;
-    background-color: #080A0A;
+.footerSection {
+    width: 100%;
+    background:
+        radial-gradient(circle at top left, rgba(254, 97, 12, 0.12), transparent 26%),
+        linear-gradient(135deg, #080a0a, #111827);
+    color: #ffffff;
     position: relative;
+    overflow: hidden;
 }
 
-.footer__container {
-    padding-top: 8rem;
-    padding-bottom: 10rem;
-    width: 75%;
-    margin: auto;
+.footerTop {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 5rem 0 3.5rem;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.8fr 1.2fr;
+    gap: 2.3rem;
 }
 
-.footer__content {
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: space-between;
-    align-items: center;
+.brandBox {
+    max-width: 390px;
 }
 
-.footer__logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    order: 1;
-    margin-bottom: 2rem;
-}
-
-.footer__logo .logo__title {
-    font-family: 'Roboto';
-    font-size: 36px;
-    font-weight: 600;
+.logoTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
     margin-bottom: 1rem;
-    color: #fff;
 }
 
-.footer__logo .logo__subtitle,
-.logo__name {
-    font-family: 'Roboto';
-    font-size: 20px;
-    color: #fff;
+.logoTitle span {
+    color: #fe610c;
+    font-family: 'Playfair Display', serif;
 }
 
-.contact__info {
+.brandBox p {
+    color: #d6d6d8;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.6rem;
+}
+
+.ctaRow {
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 1rem;
-    order: 0;
-    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
 }
 
-.footer__title {
-    margin-bottom: 2rem;
-    font-family: 'Barlow Condensed';
-    font-size: 21px;
-    font-weight: 500;
-    color: #fff;
-}
-
-.contact__info div:not(.footer__title) {
-    font-family: 'DM Sans';
-    font-size: 17px;
-    font-weight: 600;
+.ctaRow button,
+.ctaRow a {
+    border: 0;
     cursor: pointer;
-    color: #D6D6D8;
-    /* Eğer varsayılan renk istiyorsanız, ekleyebilirsiniz */
-    position: relative;
-}
-
-.contact__info div:not(.footer__title)::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: #D6D6D8;
-    transition: width 0.3s ease;
-}
-
-.contact__info div:not(.footer__title):hover::after {
-    width: 100%;
-}
-
-.contact__info div:not(.footer__title):hover {
-    font-weight: 700;
-    color: #fff;
-}
-
-.page__links {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    gap: 1rem;
-    order: -1;
-}
-
-.footer__link {
-    position: relative;
-    color: #D6D6D8;
     text-decoration: none;
-    font-family: 'DM Sans';
-    font-size: 17px;
+    background: #fe610c;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.15rem;
+    border-radius: 0.75rem;
+    transition: 0.22s ease;
+}
+
+.ctaRow a {
+    background: #25d366;
+    color: #07140c;
+}
+
+.ctaRow button:hover,
+.ctaRow a:hover {
+    transform: translateY(-3px);
+}
+
+.footerColumn h3,
+.contactBox h3 {
+    color: #ffffff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-bottom: 1.3rem;
+}
+
+.footerColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footerColumn a {
+    color: #d6d6d8;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.98rem;
     font-weight: 600;
+    margin-bottom: 0.85rem;
+    line-height: 1.35;
+    transition: 0.22s ease;
+}
+
+.footerColumn a:hover {
+    color: #fe610c;
+    transform: translateX(5px);
+}
+
+.contactBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contactBox button {
+    border: 0;
+    background: transparent;
+    text-align: left;
     cursor: pointer;
-}
-
-.footer__link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: #D6D6D8;
-    transition: width 0.3s ease;
-}
-
-.footer__link:hover::after {
-    width: 100%;
-}
-
-.page__links .footer__link:hover {
-    font-family: 'DM Sans';
-    font-size: 17px;
+    color: #d6d6d8;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.98rem;
     font-weight: 600;
-    color: #fff;
+    line-height: 1.5;
+    padding: 0;
+    margin-bottom: 1rem;
+    transition: 0.22s ease;
+}
+
+.contactBox button span {
+    display: block;
+    color: #fe610c;
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+}
+
+.contactBox button:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.contactBox a {
+    display: inline-block;
+    margin-top: 0.3rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 800;
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    transition: 0.22s ease;
+}
+
+.contactBox a:hover {
+    background: #fe610c;
+    border-color: #fe610c;
+}
+
+.localSeoBar {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 1.1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.localSeoBar span {
+    color: #d6d6d8;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
 }
 
 .copyright {
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    color: #D6D6D8;
-    width: 75%;
-    margin: auto;
-    border-top: 2px solid #fff;
-    padding-top: 10px;
-    font-family: 'DM Sans';
-    font-size: 16px;
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 1.4rem 0;
+    color: #d6d6d8;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    text-align: center;
+}
+
+@media (max-width: 1050px) {
+    .footerTop {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .brandBox {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .footerTop {
+        grid-template-columns: 1fr;
+        padding: 3.5rem 0 2.5rem;
+    }
+
+    .logoTitle {
+        font-size: 1.7rem;
+    }
+
+    .localSeoBar {
+        gap: 0.5rem;
+    }
+
+    .localSeoBar span {
+        font-size: 0.8rem;
+    }
 }

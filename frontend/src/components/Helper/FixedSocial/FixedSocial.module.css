@@ -1,36 +1,55 @@
-.fixed__social {
+.fixedSocial {
     position: fixed;
-    top: 50%;
-    width: max-content;
-    right: 2%;
-    transform: translateY(-50%);
-    z-index: 3;
-    background: rgba(35, 58, 171, 0.33);
-    padding: 10px 4px;
-    border-radius: 10px;
-    width: 55px;
-    text-align: center;
+    right: 24px;
+    bottom: 28px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.fixed__social a {
-    display: block;
-    margin: 10px 0;
-    filter: grayscale(1);
-    transition: .3s;
-    opacity: .5;
+.item {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+    transition: .25s;
+    position: relative;
 }
 
-.fixed__social a:hover {
+.item:hover {
+    width: 180px;
+    justify-content: flex-start;
+    padding-left: 18px;
+    background: #FE610C;
+}
+
+.item svg {
+    width: 28px;
+    height: 28px;
+}
+
+.item:hover svg {
+    stroke: white;
+}
+
+.item span {
+    position: absolute;
+    left: 62px;
+    color: white;
+    font-family: "DM Sans";
+    font-weight: 700;
+    opacity: 0;
+    transition: .2s;
+    white-space: nowrap;
+}
+
+.item:hover span {
     opacity: 1;
-    filter: unset;
-}
-
-.fixed__social a:hover svg {
-    transform: scale(1.1);
-}
-
-.fixed__social a svg {
-    font-size: 40px;
-    height: 40px;
-    transition: .3s;
 }
