@@ -87,6 +87,13 @@ const AboutUs = () => {
                 olarak değil, sahibinin bize emanet ettiği değerli bir varlık
                 olarak görüyoruz.
               </p>
+              <p>
+                Bugüne kadar yüzlerce bireysel aracın yanı sıra, Kırşehir İl Emniyet
+                Müdürlüğü'ne ait araçların kaporta ve boya onarımlarını da titizlikle
+                gerçekleştirdik. Her araçta aynı kalite standartlarını uyguluyor, güvenilir
+                işçilik ve müşteri memnuniyetini ön planda tutarak hizmet vermeye devam
+                ediyoruz.
+            </p>
             </div>
 
             <div className={classes.rightBox}>
