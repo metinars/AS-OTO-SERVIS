@@ -12,6 +12,7 @@ import Error from './pages/ErrorPage/Error';
 import AboutUs from './pages/AboutUsPage/AboutUs';
 import Services from './pages/ServicesPage/Services';
 import Contact from './pages/ContactPage/Contact';
+import QrPage from './pages/QrPage/QrPage';
 
 import KirsehirOtoKaporta from './layout/ServiceDetailPages/KirsehirOtoKaporta';
 import KirsehirBoyasizGocuk from './layout/ServiceDetailPages/KirsehirBoyasizGocuk';
@@ -19,8 +20,6 @@ import KirsehirOtoBoya from './layout/ServiceDetailPages/KirsehirOtoBoya';
 import KirsehirSigortaKasko from './layout/ServiceDetailPages/KirsehirSigortaKasko';
 import KirsehirLokalBoya from './layout/ServiceDetailPages/KirsehirLokalBoya';
 import KirsehirDoluHasari from './layout/ServiceDetailPages/KirsehirDoluHasari';
-
-import FixedSocial from './components/Helper/FixedSocial/FixedSocial';
 
 import BlogDetailPage from './pages/BlogPages/BlogDetailPage';
 import BlogListPage from './pages/BlogPages/BlogsList/BlogList';
@@ -53,48 +52,75 @@ import AuthStatusMessage from './components/UI/StatusMessages/AuthStatusMessage'
 
 const router = createBrowserRouter([
   {
+    path: '/qr',
+    element: <QrPage />,
+    errorElement: <Error />,
+  },
+
+  {
     path: '/',
     element: <RootLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Home /> },
+      {
+        index: true,
+        element: <Home />,
+      },
 
-      { path: 'hakkimizda', element: <AboutUs /> },
+      {
+        path: 'hakkimizda',
+        element: <AboutUs />,
+      },
 
-      { path: 'hizmetlerimiz', element: <Services /> },
+      {
+        path: 'hizmetlerimiz',
+        element: <Services />,
+      },
 
       {
         path: 'hizmetler/kirsehir-oto-kaporta',
         element: <KirsehirOtoKaporta />,
       },
+
       {
         path: 'hizmetler/kirsehir-boyasiz-gocuk-onarimi',
         element: <KirsehirBoyasizGocuk />,
       },
+
       {
         path: 'hizmetler/kirsehir-oto-boya',
         element: <KirsehirOtoBoya />,
       },
+
       {
         path: 'hizmetler/kirsehir-sigorta-kasko-hasar-onarimi',
         element: <KirsehirSigortaKasko />,
       },
+
       {
         path: 'hizmetler/kirsehir-lokal-boya',
         element: <KirsehirLokalBoya />,
       },
+
       {
         path: 'hizmetler/kirsehir-dolu-hasari-onarimi',
         element: <KirsehirDoluHasari />,
       },
 
-      { path: 'iletisim', element: <Contact /> },
+      {
+        path: 'iletisim',
+        element: <Contact />,
+      },
 
       {
         path: 'blog',
         element: <BlogRootLayout />,
         children: [
-          { index: true, element: <BlogListPage /> },
+          {
+            index: true,
+            element: <BlogListPage />,
+          },
+
           {
             path: ':titleUrl',
             children: [
@@ -119,6 +145,7 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardHome />,
       },
+
       {
         path: 'blog',
         element: <AdminRootLayout />,
@@ -126,18 +153,22 @@ const router = createBrowserRouter([
           {
             index: true,
           },
+
           {
             path: 'all',
             element: <Blogs />,
           },
+
           {
             path: '?search/:query',
             element: <SearchResult />,
           },
+
           {
             path: 'add',
             element: <BlogAdd />,
           },
+
           {
             path: ':blogTitleUrl',
             id: 'blog-title-url',
@@ -150,6 +181,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+
       {
         path: 'user',
         element: <AdminRootLayout />,
@@ -164,10 +196,12 @@ const router = createBrowserRouter([
               },
             ],
           },
+
           {
             path: 'list',
             element: <UsersPage />,
           },
+
           {
             path: 'add',
             id: 'add-user',
@@ -184,10 +218,12 @@ const router = createBrowserRouter([
     element: <AuthenticationPage />,
     action: authAction,
   },
+
   {
     path: 'forgot',
     element: <ForgotPassword />,
   },
+
   {
     path: 'reset/:token',
     element: <ResetPassword />,
@@ -198,10 +234,10 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <FixedSocial />
-      {/* <ScrollToUp /> */}
+
       <BlogStatusMessage />
       <AuthStatusMessage />
+
       <SpeedInsights />
     </>
   );

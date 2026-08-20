@@ -1,55 +1,125 @@
 .fixedSocial {
     position: fixed;
-    right: 24px;
-    bottom: 28px;
+    right: 18px;
+    bottom: 24px;
     z-index: 999;
+
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    align-items: flex-end;
+    gap: 10px;
 }
 
 .item {
-    width: 58px;
-    height: 58px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, .92);
+    width: 52px;
+    height: 52px;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(12px);
+
     display: flex;
     align-items: center;
-    justify-content: center;
+
+    overflow: hidden;
+
     text-decoration: none;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
-    transition: .25s;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+
+    transition:
+        width 0.28s ease,
+        background 0.28s ease,
+        transform 0.2s ease;
+
     position: relative;
+
+    color: #5a189a;
 }
 
 .item:hover {
-    width: 180px;
-    justify-content: flex-start;
-    padding-left: 18px;
-    background: #FE610C;
+    width: 170px;
+    background: #c9181d;
+    transform: translateX(-2px);
 }
 
 .item svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
+
+    min-width: 52px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .item:hover svg {
-    stroke: white;
+    color: #fff;
+    transform: scale(1.05);
 }
 
 .item span {
-    position: absolute;
-    left: 62px;
-    color: white;
-    font-family: "DM Sans";
-    font-weight: 700;
     opacity: 0;
-    transition: .2s;
+
+    color: #fff;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
     white-space: nowrap;
+
+    transform: translateX(10px);
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.25s ease;
 }
 
 .item:hover span {
     opacity: 1;
+    transform: translateX(0);
+}
+
+/* Mobil */
+@media (max-width: 768px) {
+    .fixedSocial {
+        right: 10px;
+        bottom: 18px;
+        gap: 8px;
+    }
+
+    .item {
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+    }
+
+    .item svg {
+        width: 21px;
+        height: 21px;
+        min-width: 44px;
+        padding: 0 11px;
+    }
+
+    .item:hover {
+        width: 44px;
+        transform: none;
+        background: rgba(255, 255, 255, 0.94);
+    }
+
+    .item:hover svg {
+        color: #5a189a;
+        transform: none;
+    }
+
+    .item span {
+        display: none;
+    }
 }

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import MainNavigation from '../../layout/MainNavigation';
 import Footer from '../../layout/Footer/Footer';
+import FixedSocial from '../../components/Helper/FixedSocial/FixedSocial';
 
 const RootLayout = () => {
   const { pathname } = useLocation();
@@ -18,9 +19,13 @@ const RootLayout = () => {
   return (
     <>
       <MainNavigation />
+
       <main>
         <Outlet />
       </main>
+
+      <FixedSocial />
+
       <Footer />
     </>
   );
