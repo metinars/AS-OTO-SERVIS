@@ -8,8 +8,7 @@ const WHATSAPP_URL =
 
 const INSTAGRAM_URL = 'https://www.instagram.com/asotokaportakirsehir/';
 
-const MAPS_URL =
-  'https://www.google.com/maps/search/?api=1&query=As+Oto+Kaporta+%26+Boyas%C4%B1z+G%C3%B6%C3%A7%C3%BCk+D%C3%BCzeltme+K%C4%B1r%C5%9Fehir';
+const MAPS_URL = 'https://maps.app.goo.gl/R66q1JT5hT1Tihbf9';
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 48 48" aria-hidden="true">
@@ -17,14 +16,17 @@ const GoogleIcon = () => (
       fill="#FFC107"
       d="M43.6 20.5H42V20H24v8h11.3C33.6 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6 29.2 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.3-.4-3.5Z"
     />
+
     <path
       fill="#FF3D00"
       d="m6.3 14.7 6.6 4.8C14.7 15 18.9 12 24 12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6 29.2 4 24 4c-7.7 0-14.4 4.3-17.7 10.7Z"
     />
+
     <path
       fill="#4CAF50"
       d="M24 44c5 0 9.6-1.9 13.1-5l-6.1-5.2A12 12 0 0 1 12.9 28l-6.6 5.1A20 20 0 0 0 24 44Z"
     />
+
     <path
       fill="#1976D2"
       d="M43.6 20.5H42V20H24v8h11.3a12 12 0 0 1-4.3 5.8l6.1 5.2C40.8 35.6 44 30.6 44 24c0-1.2-.1-2.3-.4-3.5Z"
@@ -53,6 +55,7 @@ const InstagramIcon = () => (
       stroke="currentColor"
       strokeWidth="2"
     />
+
     <circle
       cx="12"
       cy="12"
@@ -61,6 +64,7 @@ const InstagramIcon = () => (
       stroke="currentColor"
       strokeWidth="2"
     />
+
     <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
   </svg>
 );
@@ -111,9 +115,14 @@ const ActionCard = ({ href, icon, title, description, className }) => {
 
 const QrPage = () => {
   useEffect(() => {
+    /* Sayfa başlığı */
     const oldTitle = document.title;
     document.title = 'AS OTO | Müşteri Sayfası';
 
+    /*
+      QR SAYFASI GOOGLE DİZİNİNE EKLENMESİN.
+      Ancak sayfadaki bağlantılar takip edilebilsin.
+    */
     let robotsMeta = document.querySelector('meta[name="robots"]');
     let createdRobotsMeta = false;
 
@@ -126,8 +135,12 @@ const QrPage = () => {
 
     const oldRobotsContent = robotsMeta.getAttribute('content');
 
-    robotsMeta.setAttribute('content', 'noindex, nofollow');
+    robotsMeta.setAttribute('content', 'noindex, follow');
 
+    /*
+      Kullanıcı QR sayfasından ayrıldığında
+      eski title ve robots ayarlarını geri yükle.
+    */
     return () => {
       document.title = oldTitle;
 
