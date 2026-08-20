@@ -186,7 +186,7 @@ const QrPage = () => {
             href={REVIEW_URL}
             icon={<GoogleIcon />}
             title="Google’da Yorum Yap"
-            description="Memnuniyetinizi paylaşarak bize destek olabilirsiniz."
+            description="Google hesabınızla güvenli şekilde yorumunuzu paylaşın."
             className={classes.google}
           />
 
