@@ -1,12 +1,26 @@
 import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { FaCar, FaUsers, FaHome, FaSignOutAlt } from 'react-icons/fa';
-import { MdMessage, MdAddToPhotos } from 'react-icons/md';
+
+import {
+  FaCar,
+  FaUsers,
+  FaHome,
+  FaSignOutAlt,
+  FaTools,
+} from 'react-icons/fa';
+
+import {
+  MdMessage,
+  MdAddToPhotos,
+  MdOutlineAddPhotoAlternate,
+} from 'react-icons/md';
+
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { TiUserAdd } from 'react-icons/ti';
 
 import classes from './Sidebar.module.css';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { sidebarActions } from '../../store/sidebar/sidebar-slice';
 import { logout } from '../../store/auth/auth-slice';
@@ -24,13 +38,13 @@ const Sidebar = () => {
     } else {
       dispatch(sidebarActions.toggle({ status: true }));
     }
-  }, [mediaQuery]);
+  }, [mediaQuery, dispatch]);
 
   useEffect(() => {
     if (mediaQuery480) {
       dispatch(sidebarActions.toggle({ status: true }));
     }
-  }, [mediaQuery480]);
+  }, [mediaQuery480, dispatch]);
 
   const isSidebar = useSelector((state) => state.sidebar.isSidebar);
   const isLoginUser = useSelector((state) => state.auth.user);
@@ -46,17 +60,19 @@ const Sidebar = () => {
         className={`${classes.navigation} ${!isSidebar ? classes.active : ''}`}
       >
         <ul>
-          <li key={'As Oto Kaporta'}>
+          <li key="As Oto Kaporta">
             <NavLink to="/admin">
               <span className={classes.icon}>
                 <FaCar />
               </span>
+
               <span className={classes.title}>
                 <h2>As Oto Kaporta</h2>
               </span>
             </NavLink>
           </li>
-          <li key={'Dashboard'}>
+
+          <li key="Dashboard">
             <NavLink
               to="/admin"
               end
@@ -67,10 +83,16 @@ const Sidebar = () => {
               <span className={classes.icon}>
                 <FaHome />
               </span>
-              <span className={classes.title}>Dashboard</span>
+
+              <span className={classes.title}>
+                Dashboard
+              </span>
             </NavLink>
           </li>
-          <li key={'blogAll'}>
+
+          {/* BLOG */}
+
+          <li key="blogAll">
             <NavLink
               to="/admin/blog/all"
               end
@@ -81,10 +103,14 @@ const Sidebar = () => {
               <span className={classes.icon}>
                 <MdMessage />
               </span>
-              <span className={classes.title}>Bloglar</span>
+
+              <span className={classes.title}>
+                Bloglar
+              </span>
             </NavLink>
           </li>
-          <li key={'addBlog'}>
+
+          <li key="addBlog">
             <NavLink
               to="/admin/blog/add"
               end
@@ -95,11 +121,54 @@ const Sidebar = () => {
               <span className={classes.icon}>
                 <MdAddToPhotos />
               </span>
-              <span className={classes.title}>Blog Ekle</span>
+
+              <span className={classes.title}>
+                Blog Ekle
+              </span>
             </NavLink>
           </li>
 
-          <li key={'Password'}>
+          {/* YAPTIĞIMIZ İŞLER */}
+
+          <li key="workAll">
+            <NavLink
+              to="/admin/work/all"
+              end
+              className={({ isActive }) =>
+                isActive ? classes.activeLink : undefined
+              }
+            >
+              <span className={classes.icon}>
+                <FaTools />
+              </span>
+
+              <span className={classes.title}>
+                Yaptığımız İşler
+              </span>
+            </NavLink>
+          </li>
+
+          <li key="addWork">
+            <NavLink
+              to="/admin/work/add"
+              end
+              className={({ isActive }) =>
+                isActive ? classes.activeLink : undefined
+              }
+            >
+              <span className={classes.icon}>
+                <MdOutlineAddPhotoAlternate />
+              </span>
+
+              <span className={classes.title}>
+                İş Ekle
+              </span>
+            </NavLink>
+          </li>
+
+          {/* KULLANICI */}
+
+          <li key="Password">
             <NavLink
               to={`/admin/user/${isLoginUser?.userName}/edit-password`}
               end
@@ -110,12 +179,16 @@ const Sidebar = () => {
               <span className={classes.icon}>
                 <RiLockPasswordFill />
               </span>
-              <span className={classes.title}>Password</span>
+
+              <span className={classes.title}>
+                Password
+              </span>
             </NavLink>
           </li>
-          <li key={'user-list'}>
+
+          <li key="user-list">
             <NavLink
-              to={`/admin/user/list`}
+              to="/admin/user/list"
               end
               className={({ isActive }) =>
                 isActive ? classes.activeLink : undefined
@@ -124,15 +197,17 @@ const Sidebar = () => {
               <span className={classes.icon}>
                 <FaUsers />
               </span>
-              <span className={classes.title}>Kullanıcılar</span>
+
+              <span className={classes.title}>
+                Kullanıcılar
+              </span>
             </NavLink>
           </li>
-          {isLoginUser.role != 'admin' ? (
-            ''
-          ) : (
-            <li key={'add-user'}>
+
+          {isLoginUser?.role === 'admin' && (
+            <li key="add-user">
               <NavLink
-                to={`/admin/user/add`}
+                to="/admin/user/add"
                 end
                 className={({ isActive }) =>
                   isActive ? classes.activeLink : undefined
@@ -141,16 +216,25 @@ const Sidebar = () => {
                 <span className={classes.icon}>
                   <TiUserAdd />
                 </span>
-                <span className={classes.title}>Kullanıcı Ekle</span>
+
+                <span className={classes.title}>
+                  Kullanıcı Ekle
+                </span>
               </NavLink>
             </li>
           )}
-          <li key={'Sign Out'}>
+
+          {/* ÇIKIŞ */}
+
+          <li key="Sign Out">
             <NavLink to="#" onClick={logoutHandler}>
               <span className={classes.icon}>
                 <FaSignOutAlt />
               </span>
-              <span className={classes.title}>Sign Out</span>
+
+              <span className={classes.title}>
+                Sign Out
+              </span>
             </NavLink>
           </li>
         </ul>

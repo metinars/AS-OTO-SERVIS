@@ -1,0 +1,138 @@
+.workAddSection {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: #F5F5F5;
+    transition: 0.5s;
+    top: 80px;
+}
+
+.workAddSection.active {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.workAddSection .form {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 0;
+    background-color: #fff;
+    display: grid;
+    grid-gap: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    grid-template-columns: 1fr;
+}
+
+.workAddSection .formGroup {
+    margin-bottom: 15px;
+}
+
+.workAddSection .formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.workAddSection .label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.workAddSection .input,
+.workAddSection .select,
+.workAddSection .quill {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.workAddSection textarea.input {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.workAddSection .quill .ql-container {
+    height: 200px;
+}
+
+
+/* ARAÇ MARKA / MODEL */
+
+.vehicleRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+/* FOTOĞRAF SAYISI */
+
+.imageCount {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+
+/* KAYDET BUTONU */
+
+.workAddSection .button {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #7656f0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.workAddSection .button:hover {
+    background-color: #5940b5;
+}
+
+.workAddSection .button:disabled {
+    background-color: #d3d3d3;
+    color: #a1a1a1;
+    cursor: not-allowed;
+}
+
+
+/* TABLET / MOBİL */
+
+@media (max-width: 768px) {
+    .vehicleRow {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .workAddSection .form {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .workAddSection {
+        width: 100%;
+        left: 0;
+    }
+
+    .workAddSection.active {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+}

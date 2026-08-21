@@ -24,6 +24,15 @@ import KirsehirDoluHasari from './layout/ServiceDetailPages/KirsehirDoluHasari';
 import BlogDetailPage from './pages/BlogPages/BlogDetailPage';
 import BlogListPage from './pages/BlogPages/BlogsList/BlogList';
 
+/*
+|--------------------------------------------------------------------------
+| PUBLIC WORK PAGES
+|--------------------------------------------------------------------------
+*/
+
+import WorksList from './pages/WorksPages/WorksList/WorksList';
+import WorkDetail from './pages/WorksPages/WorkDetail/WorkDetail';
+
 import DashboardHome from './pages/DashboardPage/DashboardHome';
 import AdminRootLayout from './pages/RootFolder/AdminRootLayout';
 
@@ -41,6 +50,10 @@ import Blogs from './pages/DashboardPage/Blog/Blogs';
 import BlogEdit from './pages/DashboardPage/Blog/BlogEdit/BlogEdit';
 import BlogAdd from './pages/DashboardPage/Blog/BlogAdd/BlogAdd';
 
+import WorkAdd from './pages/DashboardPage/Work/WorkAdd/WorkAdd';
+import Works from './pages/DashboardPage/Work/Works/Works';
+import WorkEdit from './pages/DashboardPage/Work/WorkEdit/WorkEdit';
+
 import EditPassword from './pages/DashboardPage/Authentication/EditPassword';
 import AddUserPage from './pages/DashboardPage/Authentication/AddUser/AddUser';
 import UsersPage from './pages/DashboardPage/Authentication/UsersPage';
@@ -51,11 +64,23 @@ import BlogStatusMessage from './components/UI/StatusMessages/BlogStatusMessage'
 import AuthStatusMessage from './components/UI/StatusMessages/AuthStatusMessage';
 
 const router = createBrowserRouter([
+  /*
+  |--------------------------------------------------------------------------
+  | QR
+  |--------------------------------------------------------------------------
+  */
+
   {
     path: '/qr',
     element: <QrPage />,
     errorElement: <Error />,
   },
+
+  /*
+  |--------------------------------------------------------------------------
+  | PUBLIC SITE
+  |--------------------------------------------------------------------------
+  */
 
   {
     path: '/',
@@ -76,6 +101,12 @@ const router = createBrowserRouter([
         path: 'hizmetlerimiz',
         element: <Services />,
       },
+
+      /*
+      |--------------------------------------------------------------------------
+      | HİZMETLER
+      |--------------------------------------------------------------------------
+      */
 
       {
         path: 'hizmetler/kirsehir-oto-kaporta',
@@ -107,10 +138,43 @@ const router = createBrowserRouter([
         element: <KirsehirDoluHasari />,
       },
 
+      /*
+      |--------------------------------------------------------------------------
+      | YAPTIĞIMIZ İŞLER - PUBLIC
+      |--------------------------------------------------------------------------
+      */
+
+      {
+        path: 'yaptigimiz-isler',
+        children: [
+          {
+            index: true,
+            element: <WorksList />,
+          },
+
+          {
+            path: ':titleUrl',
+            element: <WorkDetail />,
+          },
+        ],
+      },
+
+      /*
+      |--------------------------------------------------------------------------
+      | İLETİŞİM
+      |--------------------------------------------------------------------------
+      */
+
       {
         path: 'iletisim',
         element: <Contact />,
       },
+
+      /*
+      |--------------------------------------------------------------------------
+      | BLOG - PUBLIC
+      |--------------------------------------------------------------------------
+      */
 
       {
         path: 'blog',
@@ -135,6 +199,12 @@ const router = createBrowserRouter([
     ],
   },
 
+  /*
+  |--------------------------------------------------------------------------
+  | ADMIN
+  |--------------------------------------------------------------------------
+  */
+
   {
     path: 'admin',
     element: <AdminRootLayout />,
@@ -145,6 +215,12 @@ const router = createBrowserRouter([
         index: true,
         element: <DashboardHome />,
       },
+
+      /*
+      |--------------------------------------------------------------------------
+      | BLOG ADMIN
+      |--------------------------------------------------------------------------
+      */
 
       {
         path: 'blog',
@@ -182,6 +258,45 @@ const router = createBrowserRouter([
         ],
       },
 
+      /*
+      |--------------------------------------------------------------------------
+      | YAPTIĞIMIZ İŞLER - ADMIN
+      |--------------------------------------------------------------------------
+      */
+
+      {
+        path: 'work',
+        element: <AdminRootLayout />,
+        children: [
+          {
+            path: 'all',
+            element: <Works />,
+          },
+
+          {
+            path: 'add',
+            element: <WorkAdd />,
+          },
+
+          {
+            path: ':workTitleUrl',
+            id: 'work-title-url',
+            children: [
+              {
+                path: 'edit',
+                element: <WorkEdit />,
+              },
+            ],
+          },
+        ],
+      },
+
+      /*
+      |--------------------------------------------------------------------------
+      | KULLANICILAR
+      |--------------------------------------------------------------------------
+      */
+
       {
         path: 'user',
         element: <AdminRootLayout />,
@@ -212,6 +327,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  /*
+  |--------------------------------------------------------------------------
+  | AUTH
+  |--------------------------------------------------------------------------
+  */
 
   {
     path: 'auth',

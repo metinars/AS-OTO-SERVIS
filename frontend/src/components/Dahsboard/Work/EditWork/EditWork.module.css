@@ -1,0 +1,159 @@
+/* EditWork.module.css */
+
+.workEditSection {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: hsl(0, 0%, 96%);
+  transition: 0.5s;
+  top: 80px;
+  padding: 1.5rem;
+}
+
+.workEditSection.active {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+
+.editContainer {
+  overflow-x: auto;
+  position: relative;
+  min-height: 530px;
+  background: #fff;
+  padding: 20px;
+}
+
+.editForm {
+  width: 100%;
+}
+
+.workEditSection form {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  display: grid;
+  grid-gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  grid-template-columns: 1fr;
+}
+
+.workEditSection .formGroup {
+  margin-bottom: 15px;
+}
+
+.workEditSection .formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.workEditSection .input,
+.workEditSection .select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.workEditSection textarea.input {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.workEditSection .input:focus,
+.workEditSection .select:focus {
+  outline: none;
+  border-color: #7656f0;
+}
+
+/*
+|--------------------------------------------------------------------------
+| ARAÇ MARKA / MODEL
+|--------------------------------------------------------------------------
+*/
+
+.vehicleRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| KAYDET BUTONU
+|--------------------------------------------------------------------------
+*/
+
+.workEditSection .button {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #7656f0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.workEditSection .button:hover {
+  background-color: #5940b5;
+}
+
+.workEditSection .button:disabled {
+  background-color: #d3d3d3;
+  color: #a1a1a1;
+  cursor: not-allowed;
+}
+
+/*
+|--------------------------------------------------------------------------
+| TABLET
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
+  .vehicleRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .workEditSection form {
+    width: 100%;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| MOBILE
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 600px) {
+  .workEditSection {
+    padding: 15px;
+  }
+
+  .workEditSection form {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workEditSection {
+    width: 100%;
+    left: 0;
+  }
+
+  .workEditSection.active {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+}

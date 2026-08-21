@@ -1,0 +1,391 @@
+.worksPage {
+  width: 100%;
+  background: #f7f8fa;
+}
+
+/*
+|--------------------------------------------------------------------------
+| HERO
+|--------------------------------------------------------------------------
+*/
+
+.heroSection {
+  position: relative;
+  padding: 7rem 1.5rem 4.5rem;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(254, 97, 12, 0.1),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(15, 37, 55, 0.08),
+      transparent 30%
+    ),
+    #f7f8fa;
+  overflow: hidden;
+}
+
+.heroContent {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subTitle {
+  display: inline-block;
+  color: #fe610c;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.heroContent h1 {
+  margin: 0;
+  color: #0f2537;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(3.6rem, 7vw, 6rem);
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.heroContent p {
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+  color: #596575;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.85;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CONTENT
+|--------------------------------------------------------------------------
+*/
+
+.worksSection {
+  padding: 1rem 1.5rem 6rem;
+}
+
+.container {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+/*
+|--------------------------------------------------------------------------
+| FILTERS
+|--------------------------------------------------------------------------
+*/
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.filterButton {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #0f2537;
+  border-radius: 0.8rem;
+  padding: 0.85rem 1.3rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 900;
+  transition: 0.22s ease;
+}
+
+.filterButton:hover {
+  border-color: #fe610c;
+  transform: translateY(-2px);
+}
+
+.activeFilter {
+  background: #fe610c;
+  border-color: #fe610c;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(254, 97, 12, 0.2);
+}
+
+/*
+|--------------------------------------------------------------------------
+| GRID
+|--------------------------------------------------------------------------
+*/
+
+.worksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CARD
+|--------------------------------------------------------------------------
+*/
+
+.workCard {
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(15, 37, 55, 0.08);
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.workCard:hover {
+  border-color: rgba(254, 97, 12, 0.3);
+  box-shadow: 0 25px 55px rgba(15, 37, 55, 0.14);
+}
+
+/*
+|--------------------------------------------------------------------------
+| BEFORE / AFTER
+|--------------------------------------------------------------------------
+*/
+
+.imageLink {
+  display: block;
+  text-decoration: none;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 255px;
+  background: #e5e7eb;
+}
+
+.imageSide {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.imageSide:first-child {
+  border-right: 2px solid #ffffff;
+}
+
+.imageSide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.workCard:hover .imageSide img {
+  transform: scale(1.04);
+}
+
+.imageLabel {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.42rem 0.65rem;
+  border-radius: 0.45rem;
+  background: rgba(15, 37, 55, 0.9);
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.imageSide:last-child .imageLabel {
+  background: #fe610c;
+}
+
+.noImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9edf1;
+  color: #7b8794;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CARD CONTENT
+|--------------------------------------------------------------------------
+*/
+
+.cardContent {
+  padding: 1.45rem;
+}
+
+.category {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: #fe610c;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cardContent h2 {
+  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.85rem;
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.cardContent h2 a {
+  color: #0f2537;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cardContent h2 a:hover {
+  color: #fe610c;
+}
+
+.vehicleInfo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  color: #596575;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  background: #fe610c;
+  border-radius: 50%;
+}
+
+.detailLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  color: #0f2537;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.detailLink span {
+  color: #fe610c;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.detailLink:hover span {
+  transform: translateX(4px);
+}
+
+/*
+|--------------------------------------------------------------------------
+| MESSAGE
+|--------------------------------------------------------------------------
+*/
+
+.messageBox {
+  padding: 3rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  text-align: center;
+  color: #596575;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+}
+
+/*
+|--------------------------------------------------------------------------
+| RESPONSIVE
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 1050px) {
+  .worksGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .heroSection {
+    padding: 5rem 1rem 3rem;
+  }
+
+  .heroContent h1 {
+    font-size: 3.8rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+  }
+
+  .worksSection {
+    padding: 1rem 1rem 4rem;
+  }
+
+  .worksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison {
+    height: 280px;
+  }
+
+  .filters {
+    align-items: stretch;
+  }
+
+  .filterButton {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent h1 {
+    font-size: 3.2rem;
+  }
+
+  .comparison {
+    height: 230px;
+  }
+
+  .cardContent {
+    padding: 1.25rem;
+  }
+
+  .cardContent h2 {
+    font-size: 1.65rem;
+  }
+
+  .filterButton {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
