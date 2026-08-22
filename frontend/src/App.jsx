@@ -62,6 +62,7 @@ import SearchResult from './components/Dahsboard/AdminAuth/SearchResult';
 
 import BlogStatusMessage from './components/UI/StatusMessages/BlogStatusMessage';
 import AuthStatusMessage from './components/UI/StatusMessages/AuthStatusMessage';
+import WorkStatusMessage from './components/UI/StatusMessages/WorkStatusMessage/WorkStatusMessage';
 
 const router = createBrowserRouter([
   /*
@@ -358,6 +359,7 @@ function App() {
 
       <BlogStatusMessage />
       <AuthStatusMessage />
+      <WorkStatusMessage />
 
       <SpeedInsights />
     </>

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 import { fetchWorks } from '../../../store/work/work-action';
 
@@ -16,10 +17,13 @@ const WorksList = () => {
 
   const [activeCategory, setActiveCategory] = useState('all');
 
-  useEffect(() => {
-    document.title =
-      'Yaptığımız İşler | Kaporta, Boya ve Göçük Onarımı | AS Oto Kırşehir';
+  /*
+  |--------------------------------------------------------------------------
+  | SAYFA YÜKLENDİĞİNDE
+  |--------------------------------------------------------------------------
+  */
 
+  useEffect(() => {
     window.scrollTo(0, 0);
 
     dispatch(fetchWorks());
@@ -67,214 +71,364 @@ const WorksList = () => {
     return 'Hasar Onarımı';
   };
 
+  /*
+  |--------------------------------------------------------------------------
+  | SEO
+  |--------------------------------------------------------------------------
+  */
+
+  const pageTitle =
+    'Yaptığımız İşler | Kaporta, Boya ve Göçük Onarımı | AS Oto Kırşehir';
+
+  const pageDescription =
+    "Kırşehir'de gerçekleştirdiğimiz kaporta, oto boya ve boyasız göçük onarımı çalışmalarını öncesi ve sonrası fotoğraflarıyla inceleyin.";
+
+  const canonicalUrl =
+    'https://asotokaporta.com/yaptigimiz-isler';
+
   return (
-    <motion.main
-      className={classes.worksPage}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.35 }}
-    >
-      <section className={classes.heroSection}>
-        <div className={classes.heroContent}>
-          <span className={classes.subTitle}>AS OTO KAPORTA</span>
+    <>
+      <Helmet>
+        <title>{pageTitle}</title>
 
-          <h1>Yaptığımız İşler</h1>
+        <meta
+          name="description"
+          content={pageDescription}
+        />
 
-          <p>
-            Kırşehir'de gerçekleştirdiğimiz kaporta, boya ve boyasız göçük
-            onarımı çalışmalarımızdan bazılarını öncesi ve sonrası
-            fotoğraflarıyla inceleyebilirsiniz.
-          </p>
-        </div>
-      </section>
+        <link
+          rel="canonical"
+          href={canonicalUrl}
+        />
 
-      <section className={classes.worksSection}>
-        <div className={classes.container}>
-          {/* FİLTRELER */}
+        <meta
+          property="og:title"
+          content={pageTitle}
+        />
 
-          <div className={classes.filters}>
-            <button
-              type="button"
-              className={`${classes.filterButton} ${
-                activeCategory === 'all' ? classes.activeFilter : ''
-              }`}
-              onClick={() => setActiveCategory('all')}
-            >
-              Tümü
-            </button>
+        <meta
+          property="og:description"
+          content={pageDescription}
+        />
 
-            <button
-              type="button"
-              className={`${classes.filterButton} ${
-                activeCategory === 'kaporta-boya'
-                  ? classes.activeFilter
-                  : ''
-              }`}
-              onClick={() => setActiveCategory('kaporta-boya')}
-            >
-              Kaporta ve Boya
-            </button>
+        <meta
+          property="og:url"
+          content={canonicalUrl}
+        />
 
-            <button
-              type="button"
-              className={`${classes.filterButton} ${
-                activeCategory === 'boyasiz-gocuk'
-                  ? classes.activeFilter
-                  : ''
-              }`}
-              onClick={() => setActiveCategory('boyasiz-gocuk')}
-            >
-              Boyasız Göçük Onarımı
-            </button>
+        <meta
+          property="og:type"
+          content="website"
+        />
+
+        <meta
+          property="og:site_name"
+          content="AS Oto Kaporta"
+        />
+
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          name="twitter:title"
+          content={pageTitle}
+        />
+
+        <meta
+          name="twitter:description"
+          content={pageDescription}
+        />
+      </Helmet>
+
+      <motion.main
+        className={classes.worksPage}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35 }}
+      >
+        {/* HERO */}
+
+        <section className={classes.heroSection}>
+          <div className={classes.heroContent}>
+            <span className={classes.subTitle}>
+              AS OTO KAPORTA
+            </span>
+
+            <h1>Yaptığımız İşler</h1>
+
+            <p>
+              Kırşehir'de gerçekleştirdiğimiz kaporta, boya ve
+              boyasız göçük onarımı çalışmalarımızdan bazılarını
+              öncesi ve sonrası fotoğraflarıyla inceleyebilirsiniz.
+            </p>
           </div>
+        </section>
 
-          {/* LOADING */}
+        {/* WORKS */}
 
-          {loading && (
-            <div className={classes.messageBox}>
-              Çalışmalar yükleniyor...
+        <section className={classes.worksSection}>
+          <div className={classes.container}>
+            {/* FİLTRELER */}
+
+            <div className={classes.filters}>
+              <button
+                type="button"
+                className={`${classes.filterButton} ${
+                  activeCategory === 'all'
+                    ? classes.activeFilter
+                    : ''
+                }`}
+                onClick={() => setActiveCategory('all')}
+              >
+                Tümü
+              </button>
+
+              <button
+                type="button"
+                className={`${classes.filterButton} ${
+                  activeCategory === 'kaporta-boya'
+                    ? classes.activeFilter
+                    : ''
+                }`}
+                onClick={() =>
+                  setActiveCategory('kaporta-boya')
+                }
+              >
+                Kaporta ve Boya
+              </button>
+
+              <button
+                type="button"
+                className={`${classes.filterButton} ${
+                  activeCategory === 'boyasiz-gocuk'
+                    ? classes.activeFilter
+                    : ''
+                }`}
+                onClick={() =>
+                  setActiveCategory('boyasiz-gocuk')
+                }
+              >
+                Boyasız Göçük Onarımı
+              </button>
             </div>
-          )}
 
-          {/* ERROR */}
+            {/* LOADING */}
 
-          {!loading && error && (
-            <div className={classes.messageBox}>
-              Çalışmalar yüklenirken bir hata oluştu.
-            </div>
-          )}
+            {loading && (
+              <div className={classes.messageBox}>
+                Çalışmalar yükleniyor...
+              </div>
+            )}
 
-          {/* SONUÇ YOK */}
+            {/* ERROR */}
 
-          {!loading && !error && filteredWorks.length === 0 && (
-            <div className={classes.messageBox}>
-              Bu kategoride henüz yayınlanmış bir çalışma bulunmuyor.
-            </div>
-          )}
+            {!loading && error && (
+              <div className={classes.messageBox}>
+                Çalışmalar yüklenirken bir hata oluştu.
+              </div>
+            )}
 
-          {/* İŞLER */}
+            {/* SONUÇ YOK */}
 
-          {!loading && !error && filteredWorks.length > 0 && (
-            <motion.div
-              className={classes.worksGrid}
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                  },
-                },
-              }}
-            >
-              {filteredWorks.map((work) => {
-                const beforeImage = work.beforeImages?.[0]?.url;
-                const afterImage = work.afterImages?.[0]?.url;
+            {!loading &&
+              !error &&
+              filteredWorks.length === 0 && (
+                <div className={classes.messageBox}>
+                  Bu kategoride henüz yayınlanmış bir çalışma
+                  bulunmuyor.
+                </div>
+              )}
 
-                return (
-                  <motion.article
-                    key={work._id}
-                    className={classes.workCard}
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 25,
+            {/* İŞLER */}
+
+            {!loading &&
+              !error &&
+              filteredWorks.length > 0 && (
+                <motion.div
+                  className={classes.worksGrid}
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.1,
                       },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                      },
-                    }}
-                    whileHover={{
-                      y: -7,
-                    }}
-                  >
-                    <Link
-                      to={`/yaptigimiz-isler/${work.titleUrl}`}
-                      className={classes.imageLink}
-                    >
-                      <div className={classes.comparison}>
-                        <div className={classes.imageSide}>
-                          {beforeImage ? (
-                            <img
-                              src={beforeImage}
-                              alt={`${work.vehicleBrand} ${work.vehicleModel} onarım öncesi`}
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className={classes.noImage}>
-                              Görsel Yok
-                            </div>
-                          )}
+                    },
+                  }}
+                >
+                  {filteredWorks.map((work) => {
+                    const beforeImage =
+                      work.beforeImages?.[0]?.url;
 
-                          <span className={classes.imageLabel}>
-                            Öncesi
-                          </span>
-                        </div>
+                    const afterImage =
+                      work.afterImages?.[0]?.url;
 
-                        <div className={classes.imageSide}>
-                          {afterImage ? (
-                            <img
-                              src={afterImage}
-                              alt={`${work.vehicleBrand} ${work.vehicleModel} onarım sonrası`}
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className={classes.noImage}>
-                              Görsel Yok
-                            </div>
-                          )}
+                    const vehicleName = [
+                      work.vehicleBrand,
+                      work.vehicleModel,
+                    ]
+                      .filter(Boolean)
+                      .join(' ');
 
-                          <span className={classes.imageLabel}>
-                            Sonrası
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
+                    return (
+                      <motion.article
+                        key={work._id}
+                        className={classes.workCard}
+                        variants={{
+                          hidden: {
+                            opacity: 0,
+                            y: 25,
+                          },
 
-                    <div className={classes.cardContent}>
-                      <span className={classes.category}>
-                        {getCategoryName(work.category)}
-                      </span>
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                          },
+                        }}
+                        whileHover={{
+                          y: -7,
+                        }}
+                      >
+                        {/* IMAGES */}
 
-                      <h2>
                         <Link
                           to={`/yaptigimiz-isler/${work.titleUrl}`}
+                          className={classes.imageLink}
+                          aria-label={`${work.title} çalışmasını incele`}
                         >
-                          {work.title}
+                          <div
+                            className={classes.comparison}
+                          >
+                            {/* BEFORE */}
+
+                            <div
+                              className={classes.imageSide}
+                            >
+                              {beforeImage ? (
+                                <img
+                                  src={beforeImage}
+                                  alt={`${vehicleName} onarım öncesi`}
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <div
+                                  className={classes.noImage}
+                                >
+                                  Görsel Yok
+                                </div>
+                              )}
+
+                              <span
+                                className={
+                                  classes.imageLabel
+                                }
+                              >
+                                Öncesi
+                              </span>
+                            </div>
+
+                            {/* AFTER */}
+
+                            <div
+                              className={classes.imageSide}
+                            >
+                              {afterImage ? (
+                                <img
+                                  src={afterImage}
+                                  alt={`${vehicleName} onarım sonrası`}
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <div
+                                  className={classes.noImage}
+                                >
+                                  Görsel Yok
+                                </div>
+                              )}
+
+                              <span
+                                className={
+                                  classes.imageLabel
+                                }
+                              >
+                                Sonrası
+                              </span>
+                            </div>
+                          </div>
                         </Link>
-                      </h2>
 
-                      <div className={classes.vehicleInfo}>
-                        {work.vehicleBrand && (
-                          <span>{work.vehicleBrand}</span>
-                        )}
+                        {/* CONTENT */}
 
-                        {work.vehicleModel && (
-                          <>
-                            <span className={classes.dot}></span>
-                            <span>{work.vehicleModel}</span>
-                          </>
-                        )}
-                      </div>
+                        <div
+                          className={classes.cardContent}
+                        >
+                          <span
+                            className={classes.category}
+                          >
+                            {getCategoryName(
+                              work.category
+                            )}
+                          </span>
 
-                      <Link
-                        to={`/yaptigimiz-isler/${work.titleUrl}`}
-                        className={classes.detailLink}
-                      >
-                        Detayları İncele <span>→</span>
-                      </Link>
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </motion.div>
-          )}
-        </div>
-      </section>
-    </motion.main>
+                          <h2>
+                            <Link
+                              to={`/yaptigimiz-isler/${work.titleUrl}`}
+                            >
+                              {work.title}
+                            </Link>
+                          </h2>
+
+                          {(work.vehicleBrand ||
+                            work.vehicleModel) && (
+                            <div
+                              className={
+                                classes.vehicleInfo
+                              }
+                            >
+                              {work.vehicleBrand && (
+                                <span>
+                                  {work.vehicleBrand}
+                                </span>
+                              )}
+
+                              {work.vehicleBrand &&
+                                work.vehicleModel && (
+                                  <span
+                                    className={
+                                      classes.dot
+                                    }
+                                  ></span>
+                                )}
+
+                              {work.vehicleModel && (
+                                <span>
+                                  {work.vehicleModel}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          <Link
+                            to={`/yaptigimiz-isler/${work.titleUrl}`}
+                            className={classes.detailLink}
+                          >
+                            Detayları İncele
+                            <span>→</span>
+                          </Link>
+                        </div>
+                      </motion.article>
+                    );
+                  })}
+                </motion.div>
+              )}
+          </div>
+        </section>
+      </motion.main>
+    </>
   );
-};  
+};
 
 export default WorksList;

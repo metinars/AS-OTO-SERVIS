@@ -6,14 +6,17 @@ import ContactForm from '../../layout/ContactForm';
 import FuseRepair from '../../layout/FuseRepair';
 import OurServices from '../../layout/OurServices';
 import WrapSlider from '../../layout/WrapSlider';
+import WorksShowcase from '../../layout/WorksShowcase/WorksShowcase';
 
 const LazyLoadComponent = ({ children }) => {
   const { ref, inView } = useInView();
   const [loaded, setLoaded] = useState(false);
 
-  if (inView && !loaded) {
-    setLoaded(true);
-  }
+  useEffect(() => {
+    if (inView && !loaded) {
+      setLoaded(true);
+    }
+  }, [inView, loaded]);
 
   return <div ref={ref}>{loaded && children}</div>;
 };
@@ -22,19 +25,28 @@ const Home = () => {
   useEffect(() => {
     document.title =
       'Profesyonel Kaporta Tamiri ve Onarımı | As Oto Kaporta | Kırşehir';
+
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <LazyLoadComponent>
         <WrapSlider />
       </LazyLoadComponent>
+
       <LazyLoadComponent>
         <OurServices />
       </LazyLoadComponent>
+
       <LazyLoadComponent>
         <FuseRepair />
       </LazyLoadComponent>
+
+      <LazyLoadComponent>
+        <WorksShowcase />
+      </LazyLoadComponent>
+
       <LazyLoadComponent>
         <ContactForm />
       </LazyLoadComponent>

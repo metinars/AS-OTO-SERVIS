@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IoMdCheckmark } from 'react-icons/io';
+import { Helmet } from 'react-helmet-async';
 
 import { fetchWorkDetail } from '../../../store/work/work-action';
 
@@ -19,44 +20,11 @@ const WorkDetail = () => {
   const [selectedBefore, setSelectedBefore] = useState(0);
   const [selectedAfter, setSelectedAfter] = useState(0);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-    setSelectedBefore(0);
-    setSelectedAfter(0);
-
-    dispatch(fetchWorkDetail(titleUrl));
-  }, [dispatch, titleUrl]);
-
-  useEffect(() => {
-    if (!work) {
-      return;
-    }
-
-    document.title =
-      work.metaTitle ||
-      `${work.title} | AS Oto Hasar Onarım Merkezi Kırşehir`;
-
-    const description =
-      work.metaDescription ||
-      `${work.vehicleBrand || ''} ${
-        work.vehicleModel || ''
-      } aracında gerçekleştirdiğimiz ${getCategoryName(
-        work.category
-      ).toLocaleLowerCase('tr-TR')} çalışmasını inceleyin.`;
-
-    let metaDescription = document.querySelector(
-      'meta[name="description"]'
-    );
-
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
-    }
-
-    metaDescription.content = description;
-  }, [work]);
+  /*
+  |--------------------------------------------------------------------------
+  | KATEGORİ ADI
+  |--------------------------------------------------------------------------
+  */
 
   const getCategoryName = (category) => {
     if (category === 'boyasiz-gocuk') {
@@ -70,6 +38,27 @@ const WorkDetail = () => {
     return 'Hasar Onarımı';
   };
 
+  /*
+  |--------------------------------------------------------------------------
+  | ÇALIŞMAYI GETİR
+  |--------------------------------------------------------------------------
+  */
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    setSelectedBefore(0);
+    setSelectedAfter(0);
+
+    dispatch(fetchWorkDetail(titleUrl));
+  }, [dispatch, titleUrl]);
+
+  /*
+  |--------------------------------------------------------------------------
+  | LOADING
+  |--------------------------------------------------------------------------
+  */
+
   if (loading) {
     return (
       <main className={classes.workDetailPage}>
@@ -82,9 +71,20 @@ const WorkDetail = () => {
     );
   }
 
+  /*
+  |--------------------------------------------------------------------------
+  | ERROR
+  |--------------------------------------------------------------------------
+  */
+
   if (error) {
     return (
       <main className={classes.workDetailPage}>
+        <Helmet>
+          <title>Çalışma Bulunamadı | AS Oto Kaporta</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
+
         <div className={classes.stateContainer}>
           <div className={classes.messageBox}>
             <h1>Çalışma bulunamadı</h1>
@@ -109,285 +109,586 @@ const WorkDetail = () => {
     return null;
   }
 
+  /*
+  |--------------------------------------------------------------------------
+  | GÖRSELLER
+  |--------------------------------------------------------------------------
+  */
+
   const beforeImages = work.beforeImages || [];
   const afterImages = work.afterImages || [];
 
   const activeBeforeImage = beforeImages[selectedBefore];
   const activeAfterImage = afterImages[selectedAfter];
 
+  /*
+  |--------------------------------------------------------------------------
+  | GENEL BİLGİLER
+  |--------------------------------------------------------------------------
+  */
+
   const phoneHref = '+905389118309';
 
+  const vehicleName = [
+    work.vehicleBrand,
+    work.vehicleModel,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  /*
+  |--------------------------------------------------------------------------
+  | SEO
+  |--------------------------------------------------------------------------
+  */
+
+  const pageTitle =
+    work.metaTitle ||
+    `${work.title} | AS Oto Hasar Onarım Merkezi Kırşehir`;
+
+  const pageDescription =
+    work.metaDescription ||
+    `${
+      vehicleName ? `${vehicleName} aracında ` : ''
+    }gerçekleştirdiğimiz ${getCategoryName(
+      work.category
+    ).toLocaleLowerCase(
+      'tr-TR'
+    )} çalışmasını öncesi ve sonrası fotoğraflarıyla inceleyin.`;
+
+  const canonicalUrl =
+    `https://asotokaporta.com/yaptigimiz-isler/${work.titleUrl}`;
+
+  const socialImage =
+    afterImages?.[0]?.url ||
+    beforeImages?.[0]?.url ||
+    '';
+
+  /*
+  |--------------------------------------------------------------------------
+  | STRUCTURED DATA - SERVICE
+  |--------------------------------------------------------------------------
+  */
+
+  const workSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+
+    '@id': `${canonicalUrl}#service`,
+
+    name: work.title,
+
+    description: pageDescription,
+
+    url: canonicalUrl,
+
+    serviceType: getCategoryName(work.category),
+
+    areaServed: {
+      '@type': 'City',
+      name: 'Kırşehir',
+    },
+
+    provider: {
+      '@type': 'AutoRepair',
+      '@id': 'https://asotokaporta.com/#business',
+      name: 'AS Oto Kaporta',
+    },
+
+    ...(socialImage && {
+      image: socialImage,
+    }),
+  };
+
+  /*
+  |--------------------------------------------------------------------------
+  | STRUCTURED DATA - BREADCRUMB
+  |--------------------------------------------------------------------------
+  */
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Ana Sayfa',
+        item: 'https://asotokaporta.com/',
+      },
+
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Yaptığımız İşler',
+        item: 'https://asotokaporta.com/yaptigimiz-isler',
+      },
+
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: work.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
+
   return (
-    <motion.main
-      className={classes.workDetailPage}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.35 }}
-    >
-      {/* HERO */}
+    <>
+      {/*
+      |--------------------------------------------------------------------------
+      | SEO
+      |--------------------------------------------------------------------------
+      */}
 
-      <section className={classes.heroSection}>
-        <div className={classes.heroContainer}>
-          <div className={classes.breadcrumb}>
-            <Link to="/">Ana Sayfa</Link>
+      <Helmet>
+        <title>{pageTitle}</title>
 
-            <span>/</span>
+        <meta
+          name="description"
+          content={pageDescription}
+        />
 
-            <Link to="/yaptigimiz-isler">
-              Yaptığımız İşler
-            </Link>
+        {work.metaKeywords && (
+          <meta
+            name="keywords"
+            content={work.metaKeywords}
+          />
+        )}
 
-            <span>/</span>
+        <link
+          rel="canonical"
+          href={canonicalUrl}
+        />
 
-            <strong>{work.title}</strong>
-          </div>
+        {/* OPEN GRAPH */}
 
-          <span className={classes.category}>
-            {getCategoryName(work.category)}
-          </span>
+        <meta
+          property="og:title"
+          content={pageTitle}
+        />
 
-          <h1>{work.title}</h1>
+        <meta
+          property="og:description"
+          content={pageDescription}
+        />
 
-          {(work.vehicleBrand || work.vehicleModel) && (
-            <div className={classes.vehicle}>
-              {work.vehicleBrand && (
-                <span>{work.vehicleBrand}</span>
-              )}
+        <meta
+          property="og:url"
+          content={canonicalUrl}
+        />
 
-              {work.vehicleBrand && work.vehicleModel && (
-                <span className={classes.vehicleDot}></span>
-              )}
+        <meta
+          property="og:type"
+          content="article"
+        />
 
-              {work.vehicleModel && (
-                <span>{work.vehicleModel}</span>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
+        <meta
+          property="og:site_name"
+          content="AS Oto Kaporta"
+        />
 
-      {/* BEFORE / AFTER */}
+        {socialImage && (
+          <meta
+            property="og:image"
+            content={socialImage}
+          />
+        )}
 
-      <section className={classes.gallerySection}>
-        <div className={classes.container}>
-          <div className={classes.sectionHeading}>
-            <span>ONARIM SÜRECİ</span>
+        {/* TWITTER */}
 
-            <h2>Öncesi ve Sonrası</h2>
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
 
-            <p>
-              Aracın onarım öncesindeki durumunu ve tamamlanan işlem
-              sonrasındaki görünümünü karşılaştırabilirsiniz.
-            </p>
-          </div>
+        <meta
+          name="twitter:title"
+          content={pageTitle}
+        />
 
-          <div className={classes.comparisonGrid}>
-            {/* ÖNCESİ */}
+        <meta
+          name="twitter:description"
+          content={pageDescription}
+        />
 
-            <div className={classes.galleryColumn}>
-              <div className={classes.galleryTitle}>
-                <span className={classes.beforeBadge}>
-                  Öncesi
-                </span>
+        {socialImage && (
+          <meta
+            name="twitter:image"
+            content={socialImage}
+          />
+        )}
 
-                <strong>Hasarlı Durum</strong>
-              </div>
+        {/* SERVICE SCHEMA */}
 
-              {activeBeforeImage ? (
-                <>
-                  <div className={classes.mainImage}>
-                    <img
-                      src={activeBeforeImage.url}
-                      alt={`${work.vehicleBrand} ${work.vehicleModel} onarım öncesi`}
-                    />
-                  </div>
+        <script type="application/ld+json">
+          {JSON.stringify(workSchema)}
+        </script>
 
-                  {beforeImages.length > 1 && (
-                    <div className={classes.thumbnails}>
-                      {beforeImages.map((image, index) => (
-                        <button
-                          key={image.public_id || index}
-                          type="button"
-                          className={`${classes.thumbnail} ${
-                            selectedBefore === index
-                              ? classes.activeThumbnail
-                              : ''
-                          }`}
-                          onClick={() =>
-                            setSelectedBefore(index)
-                          }
-                        >
-                          <img
-                            src={image.url}
-                            alt={`Onarım öncesi ${index + 1}`}
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className={classes.noImage}>
-                  Öncesi görseli bulunmuyor.
-                </div>
-              )}
-            </div>
+        {/* BREADCRUMB SCHEMA */}
 
-            {/* SONRASI */}
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
 
-            <div className={classes.galleryColumn}>
-              <div className={classes.galleryTitle}>
-                <span className={classes.afterBadge}>
-                  Sonrası
-                </span>
+      <motion.main
+        className={classes.workDetailPage}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35 }}
+      >
+        {/* HERO */}
 
-                <strong>Onarım Sonrası</strong>
-              </div>
+        <section className={classes.heroSection}>
+          <div className={classes.heroContainer}>
+            <div className={classes.breadcrumb}>
+              <Link to="/">
+                Ana Sayfa
+              </Link>
 
-              {activeAfterImage ? (
-                <>
-                  <div className={classes.mainImage}>
-                    <img
-                      src={activeAfterImage.url}
-                      alt={`${work.vehicleBrand} ${work.vehicleModel} onarım sonrası`}
-                    />
-                  </div>
+              <span>/</span>
 
-                  {afterImages.length > 1 && (
-                    <div className={classes.thumbnails}>
-                      {afterImages.map((image, index) => (
-                        <button
-                          key={image.public_id || index}
-                          type="button"
-                          className={`${classes.thumbnail} ${
-                            selectedAfter === index
-                              ? classes.activeThumbnail
-                              : ''
-                          }`}
-                          onClick={() =>
-                            setSelectedAfter(index)
-                          }
-                        >
-                          <img
-                            src={image.url}
-                            alt={`Onarım sonrası ${index + 1}`}
-                          />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className={classes.noImage}>
-                  Sonrası görseli bulunmuyor.
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+              <Link to="/yaptigimiz-isler">
+                Yaptığımız İşler
+              </Link>
 
-      {/* AÇIKLAMA */}
-
-      <section className={classes.infoSection}>
-        <div className={classes.infoContainer}>
-          <article className={classes.descriptionCard}>
-            <span className={classes.subTitle}>
-              YAPILAN İŞLEM
-            </span>
-
-            <h2>Onarım Hakkında</h2>
-
-            <div
-              className={classes.description}
-              dangerouslySetInnerHTML={{
-                __html: work.desc,
-              }}
-            />
-          </article>
-
-          <aside className={classes.infoCard}>
-            <span className={classes.subTitle}>
-              ARAÇ & İŞLEM
-            </span>
-
-            <h2>Çalışma Bilgileri</h2>
-
-            <ul>
-              {work.vehicleBrand && (
-                <li>
-                  <IoMdCheckmark />
-
-                  <div>
-                    <span>Marka</span>
-                    <strong>{work.vehicleBrand}</strong>
-                  </div>
-                </li>
-              )}
-
-              {work.vehicleModel && (
-                <li>
-                  <IoMdCheckmark />
-
-                  <div>
-                    <span>Model</span>
-                    <strong>{work.vehicleModel}</strong>
-                  </div>
-                </li>
-              )}
-
-              <li>
-                <IoMdCheckmark />
-
-                <div>
-                  <span>İşlem</span>
-                  <strong>
-                    {getCategoryName(work.category)}
-                  </strong>
-                </div>
-              </li>
-            </ul>
-
-            <div className={classes.contactBox}>
-              <span>Aracınızda benzer bir hasar mı var?</span>
+              <span>/</span>
 
               <strong>
-                Fotoğrafları gönderin, hasarı birlikte değerlendirelim.
+                {work.title}
               </strong>
+            </div>
 
-              <div className={classes.actions}>
-                <a
-                  href={`tel:${phoneHref}`}
-                  className={classes.callButton}
-                >
-                  Hemen Ara
-                </a>
+            <span className={classes.category}>
+              {getCategoryName(work.category)}
+            </span>
 
-                <a
-                  href="https://wa.me/905389118309"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={classes.whatsappButton}
-                >
-                  WhatsApp
-                </a>
+            <h1>{work.title}</h1>
+
+            {(work.vehicleBrand ||
+              work.vehicleModel) && (
+              <div className={classes.vehicle}>
+                {work.vehicleBrand && (
+                  <span>
+                    {work.vehicleBrand}
+                  </span>
+                )}
+
+                {work.vehicleBrand &&
+                  work.vehicleModel && (
+                    <span
+                      className={
+                        classes.vehicleDot
+                      }
+                    ></span>
+                  )}
+
+                {work.vehicleModel && (
+                  <span>
+                    {work.vehicleModel}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* BEFORE / AFTER */}
+
+        <section className={classes.gallerySection}>
+          <div className={classes.container}>
+            <div className={classes.sectionHeading}>
+              <span>ONARIM SÜRECİ</span>
+
+              <h2>Öncesi ve Sonrası</h2>
+
+              <p>
+                Aracın onarım öncesindeki durumunu ve
+                tamamlanan işlem sonrasındaki görünümünü
+                karşılaştırabilirsiniz.
+              </p>
+            </div>
+
+            <div className={classes.comparisonGrid}>
+              {/* ÖNCESİ */}
+
+              <div className={classes.galleryColumn}>
+                <div className={classes.galleryTitle}>
+                  <span className={classes.beforeBadge}>
+                    Öncesi
+                  </span>
+
+                  <strong>
+                    Hasarlı Durum
+                  </strong>
+                </div>
+
+                {activeBeforeImage ? (
+                  <>
+                    <div className={classes.mainImage}>
+                      <img
+                        src={activeBeforeImage.url}
+                        alt={`${
+                          vehicleName || work.title
+                        } onarım öncesi`}
+                      />
+                    </div>
+
+                    {beforeImages.length > 1 && (
+                      <div className={classes.thumbnails}>
+                        {beforeImages.map(
+                          (image, index) => (
+                            <button
+                              key={
+                                image.public_id ||
+                                index
+                              }
+                              type="button"
+                              className={`${
+                                classes.thumbnail
+                              } ${
+                                selectedBefore ===
+                                index
+                                  ? classes.activeThumbnail
+                                  : ''
+                              }`}
+                              onClick={() =>
+                                setSelectedBefore(
+                                  index
+                                )
+                              }
+                              aria-label={`Onarım öncesi görsel ${
+                                index + 1
+                              }`}
+                            >
+                              <img
+                                src={image.url}
+                                alt={`${
+                                  vehicleName ||
+                                  work.title
+                                } onarım öncesi ${
+                                  index + 1
+                                }`}
+                                loading="lazy"
+                              />
+                            </button>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className={classes.noImage}>
+                    Öncesi görseli bulunmuyor.
+                  </div>
+                )}
+              </div>
+
+              {/* SONRASI */}
+
+              <div className={classes.galleryColumn}>
+                <div className={classes.galleryTitle}>
+                  <span className={classes.afterBadge}>
+                    Sonrası
+                  </span>
+
+                  <strong>
+                    Onarım Sonrası
+                  </strong>
+                </div>
+
+                {activeAfterImage ? (
+                  <>
+                    <div className={classes.mainImage}>
+                      <img
+                        src={activeAfterImage.url}
+                        alt={`${
+                          vehicleName || work.title
+                        } onarım sonrası`}
+                      />
+                    </div>
+
+                    {afterImages.length > 1 && (
+                      <div className={classes.thumbnails}>
+                        {afterImages.map(
+                          (image, index) => (
+                            <button
+                              key={
+                                image.public_id ||
+                                index
+                              }
+                              type="button"
+                              className={`${
+                                classes.thumbnail
+                              } ${
+                                selectedAfter ===
+                                index
+                                  ? classes.activeThumbnail
+                                  : ''
+                              }`}
+                              onClick={() =>
+                                setSelectedAfter(
+                                  index
+                                )
+                              }
+                              aria-label={`Onarım sonrası görsel ${
+                                index + 1
+                              }`}
+                            >
+                              <img
+                                src={image.url}
+                                alt={`${
+                                  vehicleName ||
+                                  work.title
+                                } onarım sonrası ${
+                                  index + 1
+                                }`}
+                                loading="lazy"
+                              />
+                            </button>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className={classes.noImage}>
+                    Sonrası görseli bulunmuyor.
+                  </div>
+                )}
               </div>
             </div>
-          </aside>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* BACK */}
+        {/* AÇIKLAMA */}
 
-      <section className={classes.bottomSection}>
-        <Link
-          to="/yaptigimiz-isler"
-          className={classes.allWorksButton}
-        >
-          ← Tüm Çalışmaları Gör
-        </Link>
-      </section>
-    </motion.main>
+        <section className={classes.infoSection}>
+          <div className={classes.infoContainer}>
+            <article className={classes.descriptionCard}>
+              <span className={classes.subTitle}>
+                YAPILAN İŞLEM
+              </span>
+
+              <h2>
+                Onarım Hakkında
+              </h2>
+
+              <div
+                className={classes.description}
+                dangerouslySetInnerHTML={{
+                  __html: work.desc,
+                }}
+              />
+            </article>
+
+            <aside className={classes.infoCard}>
+              <span className={classes.subTitle}>
+                ARAÇ & İŞLEM
+              </span>
+
+              <h2>
+                Çalışma Bilgileri
+              </h2>
+
+              <ul>
+                {work.vehicleBrand && (
+                  <li>
+                    <IoMdCheckmark />
+
+                    <div>
+                      <span>
+                        Marka
+                      </span>
+
+                      <strong>
+                        {work.vehicleBrand}
+                      </strong>
+                    </div>
+                  </li>
+                )}
+
+                {work.vehicleModel && (
+                  <li>
+                    <IoMdCheckmark />
+
+                    <div>
+                      <span>
+                        Model
+                      </span>
+
+                      <strong>
+                        {work.vehicleModel}
+                      </strong>
+                    </div>
+                  </li>
+                )}
+
+                <li>
+                  <IoMdCheckmark />
+
+                  <div>
+                    <span>
+                      İşlem
+                    </span>
+
+                    <strong>
+                      {getCategoryName(
+                        work.category
+                      )}
+                    </strong>
+                  </div>
+                </li>
+              </ul>
+
+              <div className={classes.contactBox}>
+                <span>
+                  Aracınızda benzer bir hasar mı var?
+                </span>
+
+                <strong>
+                  Fotoğrafları gönderin, hasarı birlikte
+                  değerlendirelim.
+                </strong>
+
+                <div className={classes.actions}>
+                  <a
+                    href={`tel:${phoneHref}`}
+                    className={classes.callButton}
+                  >
+                    Hemen Ara
+                  </a>
+
+                  <a
+                    href="https://wa.me/905389118309"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={
+                      classes.whatsappButton
+                    }
+                  >
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        {/* BACK */}
+
+        <section className={classes.bottomSection}>
+          <Link
+            to="/yaptigimiz-isler"
+            className={classes.allWorksButton}
+          >
+            ← Tüm Çalışmaları Gör
+          </Link>
+        </section>
+      </motion.main>
+    </>
   );
 };
 

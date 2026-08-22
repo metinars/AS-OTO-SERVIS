@@ -26,6 +26,7 @@ const serviceLinks = [
 
 const MainNavigation = () => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 768 });
+
   const [isBurgerButton, setIsBurgerButton] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,12 +37,19 @@ const MainNavigation = () => {
   const phoneDisplay = '(538) 911 83 09';
   const phoneHref = '+905389118309';
 
+  /*
+  |--------------------------------------------------------------------------
+  | SCROLL
+  |--------------------------------------------------------------------------
+  */
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
     };
 
     window.addEventListener('scroll', handleScroll);
+
     handleScroll();
 
     return () => {
@@ -49,17 +57,40 @@ const MainNavigation = () => {
     };
   }, []);
 
+  /*
+  |--------------------------------------------------------------------------
+  | MOBILE MENU
+  |--------------------------------------------------------------------------
+  */
+
   const closeMobileMenu = () => {
     setIsBurgerButton(false);
     setIsMobileServicesOpen(false);
   };
 
+  /*
+  |--------------------------------------------------------------------------
+  | PHONE
+  |--------------------------------------------------------------------------
+  */
+
   const handleCallClick = () => {
     window.location.href = `tel:${phoneHref}`;
   };
 
+  /*
+  |--------------------------------------------------------------------------
+  | ACTIVE ROUTES
+  |--------------------------------------------------------------------------
+  */
+
   const isServicePage =
-    currentURL === '/hizmetlerimiz' || currentURL.startsWith('/hizmetler/');
+    currentURL === '/hizmetlerimiz' ||
+    currentURL.startsWith('/hizmetler/');
+
+  const isWorksPage =
+    currentURL === '/yaptigimiz-isler' ||
+    currentURL.startsWith('/yaptigimiz-isler/');
 
   return (
     <header
@@ -68,17 +99,23 @@ const MainNavigation = () => {
       }`}
     >
       <div className={classes.navWrapper}>
+        {/* LOGO */}
+
         <div className={classes.logo}>
           <NavLink to="/">
             AS OTO <span>KAPORTA</span>
           </NavLink>
         </div>
 
+        {/* DESKTOP MENU */}
+
         {!isTabletOrMobile && (
           <nav className={classes.desktopNav}>
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? classes.active : '')}
+              className={({ isActive }) =>
+                isActive ? classes.active : ''
+              }
               end
             >
               Ana Sayfa
@@ -86,10 +123,14 @@ const MainNavigation = () => {
 
             <NavLink
               to="/hakkimizda"
-              className={({ isActive }) => (isActive ? classes.active : '')}
+              className={({ isActive }) =>
+                isActive ? classes.active : ''
+              }
             >
               Hakkımızda
             </NavLink>
+
+            {/* HİZMETLER */}
 
             <div className={classes.dropdown}>
               <NavLink
@@ -97,11 +138,17 @@ const MainNavigation = () => {
                 className={isServicePage ? classes.active : ''}
               >
                 Hizmetlerimiz
-                <span className={classes.dropdownArrow}>▾</span>
+
+                <span className={classes.dropdownArrow}>
+                  ▾
+                </span>
               </NavLink>
 
               <div className={classes.dropdownMenu}>
-                <NavLink to="/hizmetlerimiz" className={classes.dropdownItem}>
+                <NavLink
+                  to="/hizmetlerimiz"
+                  className={classes.dropdownItem}
+                >
                   Tüm Hizmetler
                 </NavLink>
 
@@ -121,40 +168,72 @@ const MainNavigation = () => {
               </div>
             </div>
 
+            {/* YAPTIĞIMIZ İŞLER */}
+
+            <NavLink
+              to="/yaptigimiz-isler"
+              className={
+                isWorksPage ? classes.active : ''
+              }
+            >
+              Yaptığımız İşler
+            </NavLink>
+
+            {/* BLOG */}
+
             <NavLink
               to="/blog"
-              className={({ isActive }) => (isActive ? classes.active : '')}
+              className={({ isActive }) =>
+                isActive ? classes.active : ''
+              }
             >
               Blog
             </NavLink>
 
+            {/* İLETİŞİM */}
+
             <NavLink
               to="/iletisim"
-              className={({ isActive }) => (isActive ? classes.active : '')}
+              className={({ isActive }) =>
+                isActive ? classes.active : ''
+              }
             >
               İletişim
             </NavLink>
           </nav>
         )}
 
+        {/* PHONE */}
+
         {!isTabletOrMobile && (
-          <div className={classes.callBox} onClick={handleCallClick}>
+          <div
+            className={classes.callBox}
+            onClick={handleCallClick}
+          >
             <span>Hemen Ara</span>
             <strong>{phoneDisplay}</strong>
           </div>
         )}
 
+        {/* MOBILE MENU */}
+
         {isTabletOrMobile && (
           <div className={classes.mobileMenu}>
             <button
-              onClick={() => setIsBurgerButton((prev) => !prev)}
+              onClick={() =>
+                setIsBurgerButton((prev) => !prev)
+              }
               className={classes.burger}
               aria-label="Menüyü aç/kapat"
             >
               {!isBurgerButton ? (
-                <GiHamburgerMenu style={{ color: '#0f2537' }} />
+                <GiHamburgerMenu
+                  style={{ color: '#0f2537' }}
+                />
               ) : (
-                <IoCloseSharp style={{ color: '#ffffff' }} />
+                <IoCloseSharp
+                  style={{ color: '#ffffff' }}
+                />
               )}
             </button>
 
@@ -164,26 +243,54 @@ const MainNavigation = () => {
 
                 <div className={classes.menu}>
                   <nav>
-                    <NavLink to="/" onClick={closeMobileMenu}>
+                    {/* ANA SAYFA */}
+
+                    <NavLink
+                      to="/"
+                      onClick={closeMobileMenu}
+                    >
                       Ana Sayfa
                     </NavLink>
 
-                    <NavLink to="/hakkimizda" onClick={closeMobileMenu}>
+                    {/* HAKKIMIZDA */}
+
+                    <NavLink
+                      to="/hakkimizda"
+                      onClick={closeMobileMenu}
+                    >
                       Hakkımızda
                     </NavLink>
 
+                    {/* HİZMETLER */}
+
                     <button
                       type="button"
-                      className={classes.mobileServicesButton}
-                      onClick={() => setIsMobileServicesOpen((prev) => !prev)}
+                      className={
+                        classes.mobileServicesButton
+                      }
+                      onClick={() =>
+                        setIsMobileServicesOpen(
+                          (prev) => !prev
+                        )
+                      }
                     >
                       Hizmetlerimiz
-                      <span>{isMobileServicesOpen ? '−' : '+'}</span>
+
+                      <span>
+                        {isMobileServicesOpen
+                          ? '−'
+                          : '+'}
+                      </span>
                     </button>
 
                     {isMobileServicesOpen && (
-                      <div className={classes.mobileSubMenu}>
-                        <NavLink to="/hizmetlerimiz" onClick={closeMobileMenu}>
+                      <div
+                        className={classes.mobileSubMenu}
+                      >
+                        <NavLink
+                          to="/hizmetlerimiz"
+                          onClick={closeMobileMenu}
+                        >
                           Tüm Hizmetler
                         </NavLink>
 
@@ -199,15 +306,39 @@ const MainNavigation = () => {
                       </div>
                     )}
 
-                    <NavLink to="/blog" onClick={closeMobileMenu}>
+                    {/* YAPTIĞIMIZ İŞLER */}
+
+                    <NavLink
+                      to="/yaptigimiz-isler"
+                      onClick={closeMobileMenu}
+                    >
+                      Yaptığımız İşler
+                    </NavLink>
+
+                    {/* BLOG */}
+
+                    <NavLink
+                      to="/blog"
+                      onClick={closeMobileMenu}
+                    >
                       Blog
                     </NavLink>
 
-                    <NavLink to="/iletisim" onClick={closeMobileMenu}>
+                    {/* İLETİŞİM */}
+
+                    <NavLink
+                      to="/iletisim"
+                      onClick={closeMobileMenu}
+                    >
                       İletişim
                     </NavLink>
 
-                    <a href={`tel:${phoneHref}`} className={classes.mobileCall}>
+                    {/* TELEFON */}
+
+                    <a
+                      href={`tel:${phoneHref}`}
+                      className={classes.mobileCall}
+                    >
                       Hemen Ara: {phoneDisplay}
                     </a>
                   </nav>
