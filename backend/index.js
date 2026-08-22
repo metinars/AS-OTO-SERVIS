@@ -4,8 +4,6 @@ const app = express();
 
 const cors = require('cors');
 
-const bodyParser = require('body-parser');
-
 const dotenv = require('dotenv');
 
 const mongoose = require('mongoose');
@@ -34,9 +32,7 @@ const upload = multer({ storage: storage });
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-
   api_key: process.env.CLOUDINARY_API_KEY,
-
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
@@ -44,21 +40,16 @@ app.use('/', siteMapRoutes);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use(express.json({ limit: '10mb' }));
-
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
-
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-
     credentials: true,
   })
 );
-
-app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.json({ message: 'Welcome to our API' }));
 
